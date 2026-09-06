@@ -1,4 +1,29 @@
 (() => {
+  const nav = document.querySelector('.main-nav');
+
+  if (nav) {
+    document.querySelectorAll('.nav-button').forEach((button) => {
+      const text = button.textContent.trim();
+      if (text.startsWith('Vårt folk')) {
+        const chevron = button.querySelector('.chevron');
+        button.childNodes[0].nodeValue = 'Toastteamet ';
+        if (chevron) chevron.textContent = '⌄';
+      }
+    });
+
+    if (!nav.querySelector('a[href="onskelista.html"]')) {
+      const wishlist = document.createElement('a');
+      wishlist.href = 'onskelista.html';
+      wishlist.className = 'nav-link';
+      wishlist.textContent = 'Önskelista';
+      if (location.pathname.endsWith('/onskelista.html') || location.pathname.endsWith('onskelista.html')) {
+        wishlist.classList.add('active');
+      }
+      const faq = nav.querySelector('a[href="faq.html"]');
+      nav.insertBefore(wishlist, faq || nav.querySelector('.nav-osa'));
+    }
+  }
+
   const dropdownItems = document.querySelectorAll('.has-dropdown');
 
   dropdownItems.forEach((item) => {
