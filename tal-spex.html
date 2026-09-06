@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anmäl tal, spex och överraskningar till toastteamet för Einar och Lovisas bröllop.">
+  <meta name="theme-color" content="#f6f0e7">
+  <title>Tal & spex | Einar & Lovisa</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="extras.css">
+</head>
+<body class="form-page">
+  <header class="inner-header">
+    <a class="brand" href="index.html" aria-label="Till startsidan">
+      <span class="brand-mark">E <i>&</i> L</span>
+      <span class="brand-date">21 · 08 · 2027</span>
+    </a>
+    <a class="inner-back" href="index.html#vart-folk">← Till hemsidan</a>
+  </header>
+
+  <main class="osa-main">
+    <section class="form-shell">
+      <p class="eyebrow">Till toastteamet</p>
+      <h1>Tal, spex & överraskningar</h1>
+      <p class="lead">Vill du hålla tal, göra ett spex, spela musik eller planera något som brudparet helst inte ska få veta i förväg? Då är det här rätt väg.</p>
+      <p>Brudens toastmaster är Johannes Wiedel och brudgummens toastmaster är Alfred Pålsson Höök. Gemensam toastmadame presenteras senare.</p>
+      <div class="form-notice"><strong>Formuläret är förberett men ännu inte anslutet till toastteamets databas.</strong> Det går därför att se vilka frågor som kommer att ställas, men inget skickas in ännu. Planerad sista dag för anmälan är 31 maj 2027.</div>
+
+      <form id="toast-form" class="form-disabled" aria-label="Förhandsvisning av formulär för tal och spex">
+        <div class="form-row">
+          <div class="form-group"><label for="toast-name">Namn</label><input id="toast-name" type="text" placeholder="För- och efternamn"></div>
+          <div class="form-group"><label for="toast-email">E-post</label><input id="toast-email" type="email" placeholder="namn@exempel.se"></div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="toast-type">Vad vill du göra?</label>
+            <select id="toast-type">
+              <option>Välj</option><option>Tal</option><option>Spex</option><option>Sång/musik</option><option>Film</option><option>Överraskning</option><option>Annat</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="toast-length">Ungefärlig längd</label><input id="toast-length" type="text" placeholder="Exempel: 4 minuter"></div>
+        </div>
+
+        <div class="form-group"><label for="toast-description">Beskriv kort vad du planerar</label><textarea id="toast-description"></textarea></div>
+        <div class="form-group"><label for="toast-participants">Vilka deltar?</label><textarea id="toast-participants" placeholder="Namn eller grupp"></textarea></div>
+
+        <div class="form-group">
+          <fieldset>
+            <legend>Behöver du något tekniskt?</legend>
+            <div class="check-grid">
+              <label class="check-option"><input type="checkbox"> Mikrofon</label>
+              <label class="check-option"><input type="checkbox"> Ljuduppspelning</label>
+              <label class="check-option"><input type="checkbox"> Projektor/skärm</label>
+              <label class="check-option"><input type="checkbox"> Annat</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group"><label for="toast-tech">Övriga tekniska behov</label><textarea id="toast-tech"></textarea></div>
+        <div class="form-group">
+          <label for="toast-secret">Ska detta hållas hemligt för brudparet?</label>
+          <select id="toast-secret"><option>Välj</option><option>Ja</option><option>Nej</option></select>
+        </div>
+        <div class="form-group"><label for="toast-notes">Övrig information till toastteamet</label><textarea id="toast-notes"></textarea></div>
+        <button class="form-button" type="button" disabled>Skicka till toastteamet</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>Einar <i>&</i> Lovisa</strong><span>21 augusti 2027</span></div>
+    <a href="index.html">Till startsidan →</a>
+  </footer>
+</body>
+</html>
