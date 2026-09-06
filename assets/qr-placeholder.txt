@@ -1,0 +1,1 @@
+QR-koden för hemsidan genereras separat och är avsedd för trycksaker, inte som en del av den publika sidans layout.
