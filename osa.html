@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#f6f0e7">
   <title>OSA | Einar & Lovisa</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="extras.css">
   <style>
     .demo-only { display: none; }
     .demo-mode .demo-only { display: block; }
@@ -17,15 +18,19 @@
     .guest-card h2 { margin: 0 0 18px; font-family: Georgia, 'Times New Roman', serif; color: #173b32; font-weight: 400; }
     .demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
     .demo-field { margin: 0 0 16px; }
-    .demo-field label { display: block; margin-bottom: 7px; font-weight: 700; font-size: 13px; color: #173b32; }
+    .demo-field label, .demo-field legend { display: block; margin-bottom: 7px; font-weight: 700; font-size: 13px; color: #173b32; }
+    .demo-field fieldset { margin: 0; padding: 0; border: 0; }
     .demo-field select, .demo-field input, .demo-field textarea { width: 100%; padding: 12px 13px; border: 1px solid rgba(23,59,50,.25); background: white; color: #1b211e; }
     .demo-field textarea { min-height: 88px; resize: vertical; }
+    .demo-checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
+    .demo-checks label { display:flex; gap:8px; align-items:center; margin:0; font-weight:400; }
+    .demo-checks input { width:auto; }
     .demo-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
     .demo-secondary { border: 1px solid #173b32; background: transparent; color: #173b32; padding: 12px 18px; cursor: pointer; }
     .demo-summary { margin-top: 26px; padding: 22px; background: #173b32; color: #f6f0e7; text-align: left; }
     .demo-summary h2 { margin-top: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
     .demo-summary ul { margin: 0; padding-left: 20px; }
-    @media (max-width: 650px) { .demo-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 650px) { .demo-grid, .demo-checks { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body class="osa-body">
@@ -46,32 +51,31 @@
       <div class="prod-only">
         <span class="osa-status">Öppnar efter årsskiftet</span>
         <p class="lead">När OSA öppnar anger ni den personliga kod som står på er inbjudan.</p>
-        <p>Koden visar automatiskt vilka personer som ingår i just er inbjudan. Varje person kommer sedan kunna svara på deltagande, matpreferenser, allergier och transport.</p>
+        <p>Koden visar automatiskt vilka personer som ingår i just er inbjudan. En kontaktperson per inbjudan anger e-post och därefter svarar varje gäst på deltagande, mat och transport.</p>
         <form class="osa-form" aria-label="OSA-formulär är ännu inte öppet">
-          <div class="form-field">
-            <label for="invite-code-closed">Personlig inbjudningskod</label>
-            <input id="invite-code-closed" type="text" placeholder="Exempel: K7M4XP" disabled>
-          </div>
+          <div class="form-field"><label for="invite-code-closed">Personlig inbjudningskod</label><input id="invite-code-closed" type="text" placeholder="Exempel: K7M4XP" disabled></div>
           <button class="form-button" type="button" disabled>Fortsätt</button>
         </form>
       </div>
 
       <div class="demo-only" id="demo-area">
         <span class="osa-status">Testläge</span>
-        <div class="demo-note"><strong>Endast test.</strong> Testsvaren sparas lokalt i den webbläsare du använder och skickas inte till någon databas.</div>
+        <div class="demo-note"><strong>Endast test.</strong> Testsvaren sparas lokalt i den webbläsare du använder och skickas inte till Google Sheet eller någon annan databas.</div>
         <p class="lead">Ange testkoden för att prova hur den framtida OSA:n fungerar.</p>
         <form class="osa-form" id="demo-login">
-          <div class="form-field">
-            <label for="invite-code">Testkod</label>
-            <input id="invite-code" name="invite-code" type="text" placeholder="Ange testkod" autocomplete="off">
-          </div>
+          <div class="form-field"><label for="invite-code">Testkod</label><input id="invite-code" name="invite-code" type="text" placeholder="Ange testkod" autocomplete="off"></div>
           <button class="form-button" type="submit">Fortsätt</button>
           <p class="demo-error" id="demo-error" hidden>Fel testkod.</p>
         </form>
 
         <form id="demo-rsvp" hidden>
           <p class="lead">Välkomna Testgäst Ett &amp; Testgäst Två</p>
-          <p>Detta är ett demohushåll så att ni kan prova hela flödet innan riktiga gäster läggs in.</p>
+          <p>Detta är ett demohushåll. I den riktiga versionen kommer namn och vilka delar av helgen ni är inbjudna till redan vara kopplade till koden.</p>
+
+          <section class="guest-card">
+            <h2>Kontakt för inbjudan</h2>
+            <div class="demo-field"><label for="contact-email">E-postadress</label><input id="contact-email" type="email" placeholder="namn@exempel.se"></div>
+          </section>
 
           <div id="guest-cards"></div>
 
@@ -84,7 +88,7 @@
         <div class="demo-summary" id="demo-summary" hidden></div>
       </div>
 
-      <p class="privacy-note"><strong>Om era uppgifter:</strong> Uppgifterna kommer endast att användas för planering och genomförande av vårt bröllop. Relevant information kan vid behov delas med exempelvis kök och transportleverantörer.</p>
+      <p class="privacy-note"><strong>Om era uppgifter:</strong> Uppgifterna används endast för planering och genomförande av vårt bröllop. Relevant information kan vid behov delas med exempelvis kök och transportleverantörer.</p>
     </section>
   </main>
 
@@ -95,8 +99,12 @@
 
       document.body.classList.add('demo-mode');
       const TEST_CODE = 'TEST2027';
-      const STORAGE_KEY = 'einar-lovisa-rsvp-demo-v1';
-      const guests = ['Testgäst Ett', 'Testgäst Två'];
+      const STORAGE_KEY = 'einar-lovisa-rsvp-demo-v2';
+      const guests = [
+        { name: 'Testgäst Ett', friday: true, sunday: true },
+        { name: 'Testgäst Två', friday: true, sunday: false }
+      ];
+      const allergyOptions = ['Gluten/celiaki','Laktos','Mjölkprotein','Nötter','Jordnötter','Ägg','Fisk','Skaldjur'];
       const login = document.getElementById('demo-login');
       const rsvp = document.getElementById('demo-rsvp');
       const error = document.getElementById('demo-error');
@@ -104,72 +112,69 @@
       const summary = document.getElementById('demo-summary');
       const clear = document.getElementById('clear-demo');
 
-      function guestCard(name, index, saved = {}) {
+      const esc = (value='') => String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+
+      function guestCard(guest, index, saved = {}) {
+        const checks = allergyOptions.map((option, j) => `<label><input type="checkbox" id="allergy-${index}-${j}" ${saved.allergies?.includes(option) ? 'checked' : ''}> ${option}</label>`).join('');
         return `
           <section class="guest-card">
-            <h2>${name}</h2>
+            <h2>${esc(guest.name)}</h2>
             <div class="demo-grid">
               <div class="demo-field">
                 <label for="attending-${index}">Kommer du på bröllopet?</label>
-                <select id="attending-${index}" name="attending-${index}" required>
+                <select id="attending-${index}" required>
                   <option value="">Välj</option>
                   <option value="Ja" ${saved.attending === 'Ja' ? 'selected' : ''}>Ja, självklart</option>
                   <option value="Nej" ${saved.attending === 'Nej' ? 'selected' : ''}>Tyvärr inte</option>
                 </select>
               </div>
               <div class="demo-field">
-                <label for="food-${index}">Matpreferens</label>
-                <select id="food-${index}" name="food-${index}">
+                <label for="food-${index}">Kostpreferens</label>
+                <select id="food-${index}">
                   <option value="">Välj</option>
-                  <option value="Äter allt" ${saved.food === 'Äter allt' ? 'selected' : ''}>Äter allt</option>
-                  <option value="Vegetariskt" ${saved.food === 'Vegetariskt' ? 'selected' : ''}>Vegetariskt</option>
-                  <option value="Veganskt" ${saved.food === 'Veganskt' ? 'selected' : ''}>Veganskt</option>
-                  <option value="Annat" ${saved.food === 'Annat' ? 'selected' : ''}>Annat</option>
+                  ${['Äter allt','Vegetariskt','Veganskt','Pescetariskt','Annat'].map(v => `<option value="${v}" ${saved.food === v ? 'selected' : ''}>${v}</option>`).join('')}
                 </select>
               </div>
             </div>
+
             <div class="demo-field">
-              <label for="allergy-${index}">Allergier eller intoleranser</label>
-              <input id="allergy-${index}" name="allergy-${index}" value="${saved.allergy || ''}" placeholder="Exempel: nötallergi">
+              <fieldset><legend>Allergier eller intoleranser</legend><div class="demo-checks">${checks}</div></fieldset>
             </div>
+            <div class="demo-field"><label for="allergy-other-${index}">Annat</label><input id="allergy-other-${index}" value="${esc(saved.allergyOther || '')}" placeholder="Skriv endast om något saknas ovan"></div>
+
             <div class="demo-grid">
               <div class="demo-field">
                 <label for="bus-${index}">Buss från vigseln till Strömsfors?</label>
-                <select id="bus-${index}" name="bus-${index}">
-                  <option value="">Välj</option>
-                  <option value="Ja" ${saved.bus === 'Ja' ? 'selected' : ''}>Ja</option>
-                  <option value="Nej" ${saved.bus === 'Nej' ? 'selected' : ''}>Nej</option>
-                </select>
+                <select id="bus-${index}"><option value="">Välj</option><option value="Ja" ${saved.bus === 'Ja' ? 'selected' : ''}>Ja</option><option value="Nej" ${saved.bus === 'Nej' ? 'selected' : ''}>Nej</option></select>
               </div>
               <div class="demo-field">
-                <label for="night-${index}">Nattbuss?</label>
-                <select id="night-${index}" name="night-${index}">
+                <label for="home-${index}">Hur planerar du att ta dig från festen?</label>
+                <select id="home-${index}">
                   <option value="">Välj</option>
-                  <option value="Nej" ${saved.night === 'Nej' ? 'selected' : ''}>Nej</option>
-                  <option value="Tranemo" ${saved.night === 'Tranemo' ? 'selected' : ''}>Ja – Tranemo (demo)</option>
-                  <option value="Svenljunga" ${saved.night === 'Svenljunga' ? 'selected' : ''}>Ja – Svenljunga (demo)</option>
+                  ${['Nattbuss','Egen bil','Skjuts','Taxi','Annat / vet inte ännu'].map(v => `<option value="${v}" ${saved.home === v ? 'selected' : ''}>${v}</option>`).join('')}
                 </select>
               </div>
             </div>
             <div class="demo-field">
-              <label for="access-${index}">Behov av tillgänglighetsanpassning</label>
-              <textarea id="access-${index}" name="access-${index}" placeholder="Lämna tomt om inget behövs">${saved.access || ''}</textarea>
+              <label for="stay-${index}">Var planerar du att bo/sova efter festen?</label>
+              <select id="stay-${index}">
+                <option value="">Välj</option>
+                ${['Tranemo','Svenljunga','Göteborg','Borås','Annan ort','Vet inte ännu'].map(v => `<option value="${v}" ${saved.stay === v ? 'selected' : ''}>${v}</option>`).join('')}
+              </select>
             </div>
-            <div class="demo-field">
-              <label for="notes-${index}">Övrigt vi bör känna till</label>
-              <textarea id="notes-${index}" name="notes-${index}">${saved.notes || ''}</textarea>
-            </div>
+            ${guest.friday ? `<div class="demo-field"><label for="friday-${index}">Om familjeminglet på fredagen blir av – deltar du?</label><select id="friday-${index}"><option value="">Välj</option><option value="Ja" ${saved.friday === 'Ja' ? 'selected' : ''}>Ja</option><option value="Nej" ${saved.friday === 'Nej' ? 'selected' : ''}>Nej</option></select></div>` : ''}
+            ${guest.sunday ? `<div class="demo-field"><label for="sunday-${index}">Om familjefrukosten på söndagen blir av – deltar du?</label><select id="sunday-${index}"><option value="">Välj</option><option value="Ja" ${saved.sunday === 'Ja' ? 'selected' : ''}>Ja</option><option value="Nej" ${saved.sunday === 'Nej' ? 'selected' : ''}>Nej</option></select></div>` : ''}
+            <div class="demo-field"><label for="song-${index}">Låtönskemål <span style="font-weight:400">(frivilligt)</span></label><input id="song-${index}" value="${esc(saved.song || '')}" placeholder="En låt som får dig upp på dansgolvet"></div>
+            <div class="demo-field"><label for="notes-${index}">Något annat vi bör känna till?</label><textarea id="notes-${index}">${esc(saved.notes || '')}</textarea></div>
           </section>`;
       }
 
-      function loadSaved() {
-        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); }
-        catch { return null; }
-      }
+      function loadSaved() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { return null; } }
 
       function renderForm() {
         const saved = loadSaved();
         cards.innerHTML = guests.map((g, i) => guestCard(g, i, saved?.guests?.[i] || {})).join('');
+        document.getElementById('contact-email').value = saved?.email || '';
         login.hidden = true;
         rsvp.hidden = false;
         if (saved) renderSummary(saved);
@@ -177,7 +182,7 @@
 
       function renderSummary(data) {
         summary.hidden = false;
-        summary.innerHTML = `<h2>Testsvar sparat i denna webbläsare</h2><ul>${data.guests.map((g, i) => `<li><strong>${guests[i]}</strong>: ${g.attending || 'Ej valt'} · ${g.food || 'Ingen matpreferens'} · buss: ${g.bus || 'Ej valt'} · nattbuss: ${g.night || 'Ej valt'}</li>`).join('')}</ul>`;
+        summary.innerHTML = `<h2>Testsvar sparat i denna webbläsare</h2><p>Kontakt: ${esc(data.email || 'Ej angiven')}</p><ul>${data.guests.map((g, i) => `<li><strong>${esc(guests[i].name)}</strong>: ${esc(g.attending || 'Ej valt')} · ${esc(g.food || 'Ingen kostpreferens')} · buss dit: ${esc(g.bus || 'Ej valt')} · hem: ${esc(g.home || 'Ej valt')} · boende: ${esc(g.stay || 'Ej valt')}</li>`).join('')}</ul>`;
       }
 
       login.addEventListener('submit', (event) => {
@@ -192,14 +197,19 @@
         event.preventDefault();
         const data = {
           code: TEST_CODE,
+          email: document.getElementById('contact-email').value.trim(),
           savedAt: new Date().toISOString(),
-          guests: guests.map((_, i) => ({
+          guests: guests.map((guest, i) => ({
             attending: document.getElementById(`attending-${i}`).value,
             food: document.getElementById(`food-${i}`).value,
-            allergy: document.getElementById(`allergy-${i}`).value.trim(),
+            allergies: allergyOptions.filter((_, j) => document.getElementById(`allergy-${i}-${j}`).checked),
+            allergyOther: document.getElementById(`allergy-other-${i}`).value.trim(),
             bus: document.getElementById(`bus-${i}`).value,
-            night: document.getElementById(`night-${i}`).value,
-            access: document.getElementById(`access-${i}`).value.trim(),
+            home: document.getElementById(`home-${i}`).value,
+            stay: document.getElementById(`stay-${i}`).value,
+            friday: guest.friday ? document.getElementById(`friday-${i}`).value : '',
+            sunday: guest.sunday ? document.getElementById(`sunday-${i}`).value : '',
+            song: document.getElementById(`song-${i}`).value.trim(),
             notes: document.getElementById(`notes-${i}`).value.trim()
           }))
         };
