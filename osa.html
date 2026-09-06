@@ -4,42 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="OSA till Einar och Lovisas bröllop den 21 augusti 2027.">
-  <meta name="theme-color" content="#f6f0e7">
+  <meta name="theme-color" content="#173b32">
   <title>OSA | Einar & Lovisa</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="extras.css">
+  <script src="script.js" defer></script>
   <style>
-    .demo-only { display: none; }
-    .demo-mode .demo-only { display: block; }
-    .demo-mode .prod-only { display: none; }
-    .demo-note { margin: 18px 0; padding: 14px 16px; background: #fff7e8; border: 1px solid rgba(182,154,106,.45); color: #4b4030; text-align: left; }
-    .demo-error { margin-top: 12px; color: #7a2731; font-weight: 700; }
-    .guest-card { margin: 28px 0 0; padding: 22px; border: 1px solid rgba(23,59,50,.18); background: #fffdf9; text-align: left; }
-    .guest-card h2 { margin: 0 0 18px; font-family: Georgia, 'Times New Roman', serif; color: #173b32; font-weight: 400; }
-    .demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
-    .demo-field { margin: 0 0 16px; }
-    .demo-field label, .demo-field legend { display: block; margin-bottom: 7px; font-weight: 700; font-size: 13px; color: #173b32; }
-    .demo-field fieldset { margin: 0; padding: 0; border: 0; }
-    .demo-field select, .demo-field input, .demo-field textarea { width: 100%; padding: 12px 13px; border: 1px solid rgba(23,59,50,.25); background: white; color: #1b211e; }
-    .demo-field textarea { min-height: 88px; resize: vertical; }
-    .demo-checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
-    .demo-checks label { display:flex; gap:8px; align-items:center; margin:0; font-weight:400; }
-    .demo-checks input { width:auto; }
-    .demo-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
-    .demo-secondary { border: 1px solid #173b32; background: transparent; color: #173b32; padding: 12px 18px; cursor: pointer; }
-    .demo-summary { margin-top: 26px; padding: 22px; background: #173b32; color: #f6f0e7; text-align: left; }
-    .demo-summary h2 { margin-top: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
-    .demo-summary ul { margin: 0; padding-left: 20px; }
-    @media (max-width: 650px) { .demo-grid, .demo-checks { grid-template-columns: 1fr; } }
+    .demo-only{display:none}.demo-mode .demo-only{display:block}.demo-mode .prod-only{display:none}
+    .demo-note{margin:18px 0;padding:14px 16px;background:#fff7e8;border:1px solid rgba(182,154,106,.45);color:#4b4030;text-align:left}
+    .demo-error{margin-top:12px;color:#7a2731;font-weight:700}.guest-card{margin:28px 0 0;padding:22px;border:1px solid rgba(23,59,50,.18);background:#fffdf9;text-align:left}
+    .guest-card h2{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;color:#173b32;font-weight:400}.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .demo-field{margin:0 0 16px}.demo-field label,.demo-field legend{display:block;margin-bottom:7px;font-weight:700;font-size:13px;color:#173b32}.demo-field fieldset{margin:0;padding:0;border:0}
+    .demo-field select,.demo-field input,.demo-field textarea{width:100%;padding:12px 13px;border:1px solid rgba(23,59,50,.25);background:white;color:#1b211e}.demo-field textarea{min-height:88px;resize:vertical}
+    .demo-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}.demo-checks label{display:flex;gap:8px;align-items:center;margin:0;font-weight:400}.demo-checks input{width:auto}
+    .demo-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.demo-secondary{border:1px solid #173b32;background:transparent;color:#173b32;padding:12px 18px;cursor:pointer}
+    .demo-summary{margin-top:26px;padding:22px;background:#173b32;color:#f6f0e7;text-align:left}.demo-summary h2{margin-top:0;font-family:Georgia,'Times New Roman',serif;font-weight:400}
+    @media(max-width:650px){.demo-grid,.demo-checks{grid-template-columns:1fr}}
   </style>
 </head>
-<body class="osa-body">
-  <header class="osa-header">
-    <a class="brand" href="index.html" aria-label="Till startsidan">
-      <span class="brand-mark">E <i>&</i> L</span>
-      <span class="brand-date">21 · 08 · 2027</span>
-    </a>
-    <a class="back-link" href="index.html">← Till hemsidan</a>
+<body class="subpage osa-body">
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="Einar och Lovisa, startsida"><span class="brand-mark">E <i>&</i> L</span><span class="brand-date">21 · 08 · 2027</span></a>
+    <nav class="main-nav" aria-label="Huvudmeny">
+      <a class="nav-link" href="index.html">Hem</a>
+      <a class="nav-link" href="om-oss.html">Om oss</a>
+      <div class="nav-item has-dropdown"><button class="nav-link nav-button" type="button" aria-expanded="false">Bröllopet <span class="chevron" aria-hidden="true">⌄</span></button><div class="dropdown" role="menu"><a href="brollopet.html" role="menuitem">Bröllopsdagen</a><a href="brollopet.html#vigsel" role="menuitem">Vigseln</a><a href="brollopet.html#fest" role="menuitem">Middag och fest</a></div></div>
+      <div class="nav-item has-dropdown"><button class="nav-link nav-button" type="button" aria-expanded="false">Vårt folk <span class="chevron" aria-hidden="true">⌄</span></button><div class="dropdown" role="menu"><a href="vart-folk.html" role="menuitem">Toastteamet</a><a href="tal-spex.html" role="menuitem">Tal och spex</a></div></div>
+      <div class="nav-item has-dropdown"><button class="nav-link nav-button" type="button" aria-expanded="false">Praktiskt <span class="chevron" aria-hidden="true">⌄</span></button><div class="dropdown" role="menu"><a href="praktiskt.html#transport" role="menuitem">Transport</a><a href="praktiskt.html#boende" role="menuitem">Boende</a><a href="praktiskt.html#parkering" role="menuitem">Parkering</a><a href="praktiskt.html#resa" role="menuitem">Resa hit</a></div></div>
+      <a class="nav-link" href="kladkod.html">Klädkod</a>
+      <a class="nav-link" href="faq.html">FAQ</a>
+      <a class="nav-link nav-osa active" href="osa.html">OSA</a>
+    </nav>
   </header>
 
   <main class="osa-main">
@@ -50,41 +45,29 @@
 
       <div class="prod-only">
         <span class="osa-status">Öppnar efter årsskiftet</span>
-        <p class="lead">När OSA öppnar anger ni den personliga kod som står på er inbjudan.</p>
-        <p>Koden visar automatiskt vilka personer som ingår i just er inbjudan. En kontaktperson per inbjudan anger e-post och därefter svarar varje gäst på deltagande, mat och transport.</p>
-        <form class="osa-form" aria-label="OSA-formulär är ännu inte öppet">
+        <p class="lead">När OSA öppnar anger ni den personliga kod som står på inbjudan.</p>
+        <p>Koden visar vilka personer som ingår i just er inbjudan. Därefter svarar varje person på deltagande, mat och transport.</p>
+        <form class="osa-form" aria-label="OSA är ännu inte öppet">
           <div class="form-field"><label for="invite-code-closed">Personlig inbjudningskod</label><input id="invite-code-closed" type="text" placeholder="Exempel: K7M4XP" disabled></div>
           <button class="form-button" type="button" disabled>Fortsätt</button>
         </form>
       </div>
 
-      <div class="demo-only" id="demo-area">
-        <span class="osa-status">Testläge</span>
-        <div class="demo-note"><strong>Endast test.</strong> Testsvaren sparas lokalt i den webbläsare du använder och skickas inte till Google Sheet eller någon annan databas.</div>
-        <p class="lead">Ange testkoden för att prova hur den framtida OSA:n fungerar.</p>
+      <div class="demo-only">
+        <span class="osa-status">Test</span>
+        <div class="demo-note"><strong>Detta är bara ett test.</strong> Svaret sparas i webbläsaren och skickas inte till den riktiga gästlistan.</div>
         <form class="osa-form" id="demo-login">
-          <div class="form-field"><label for="invite-code">Testkod</label><input id="invite-code" name="invite-code" type="text" placeholder="Ange testkod" autocomplete="off"></div>
+          <div class="form-field"><label for="invite-code">Testkod</label><input id="invite-code" type="text" autocomplete="off" placeholder="Ange testkod"></div>
           <button class="form-button" type="submit">Fortsätt</button>
           <p class="demo-error" id="demo-error" hidden>Fel testkod.</p>
         </form>
 
         <form id="demo-rsvp" hidden>
-          <p class="lead">Välkomna Testgäst Ett &amp; Testgäst Två</p>
-          <p>Detta är ett demohushåll. I den riktiga versionen kommer namn och vilka delar av helgen ni är inbjudna till redan vara kopplade till koden.</p>
-
-          <section class="guest-card">
-            <h2>Kontakt för inbjudan</h2>
-            <div class="demo-field"><label for="contact-email">E-postadress</label><input id="contact-email" type="email" placeholder="namn@exempel.se"></div>
-          </section>
-
+          <p class="lead">Välkomna Testgäst Ett och Testgäst Två</p>
+          <section class="guest-card"><h2>Kontakt för inbjudan</h2><div class="demo-field"><label for="contact-email">Mejladress</label><input id="contact-email" type="email" placeholder="namn@exempel.se"></div></section>
           <div id="guest-cards"></div>
-
-          <div class="demo-actions">
-            <button class="form-button" type="submit">Skicka testsvar</button>
-            <button class="demo-secondary" id="clear-demo" type="button">Rensa testsvar</button>
-          </div>
+          <div class="demo-actions"><button class="form-button" type="submit">Spara testsvar</button><button class="demo-secondary" id="clear-demo" type="button">Rensa</button></div>
         </form>
-
         <div class="demo-summary" id="demo-summary" hidden></div>
       </div>
 
@@ -93,137 +76,35 @@
   </main>
 
   <script>
-    (() => {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('demo') !== '1') return;
-
-      document.body.classList.add('demo-mode');
-      const TEST_CODE = 'TEST2027';
-      const STORAGE_KEY = 'einar-lovisa-rsvp-demo-v2';
-      const guests = [
-        { name: 'Testgäst Ett', friday: true, sunday: true },
-        { name: 'Testgäst Två', friday: true, sunday: false }
-      ];
-      const allergyOptions = ['Gluten/celiaki','Laktos','Mjölkprotein','Nötter','Jordnötter','Ägg','Fisk','Skaldjur'];
-      const login = document.getElementById('demo-login');
-      const rsvp = document.getElementById('demo-rsvp');
-      const error = document.getElementById('demo-error');
-      const cards = document.getElementById('guest-cards');
-      const summary = document.getElementById('demo-summary');
-      const clear = document.getElementById('clear-demo');
-
-      const esc = (value='') => String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-
-      function guestCard(guest, index, saved = {}) {
-        const checks = allergyOptions.map((option, j) => `<label><input type="checkbox" id="allergy-${index}-${j}" ${saved.allergies?.includes(option) ? 'checked' : ''}> ${option}</label>`).join('');
-        return `
-          <section class="guest-card">
-            <h2>${esc(guest.name)}</h2>
-            <div class="demo-grid">
-              <div class="demo-field">
-                <label for="attending-${index}">Kommer du på bröllopet?</label>
-                <select id="attending-${index}" required>
-                  <option value="">Välj</option>
-                  <option value="Ja" ${saved.attending === 'Ja' ? 'selected' : ''}>Ja, självklart</option>
-                  <option value="Nej" ${saved.attending === 'Nej' ? 'selected' : ''}>Tyvärr inte</option>
-                </select>
-              </div>
-              <div class="demo-field">
-                <label for="food-${index}">Kostpreferens</label>
-                <select id="food-${index}">
-                  <option value="">Välj</option>
-                  ${['Äter allt','Vegetariskt','Veganskt','Pescetariskt','Annat'].map(v => `<option value="${v}" ${saved.food === v ? 'selected' : ''}>${v}</option>`).join('')}
-                </select>
-              </div>
-            </div>
-
-            <div class="demo-field">
-              <fieldset><legend>Allergier eller intoleranser</legend><div class="demo-checks">${checks}</div></fieldset>
-            </div>
-            <div class="demo-field"><label for="allergy-other-${index}">Annat</label><input id="allergy-other-${index}" value="${esc(saved.allergyOther || '')}" placeholder="Skriv endast om något saknas ovan"></div>
-
-            <div class="demo-grid">
-              <div class="demo-field">
-                <label for="bus-${index}">Buss från vigseln till Strömsfors?</label>
-                <select id="bus-${index}"><option value="">Välj</option><option value="Ja" ${saved.bus === 'Ja' ? 'selected' : ''}>Ja</option><option value="Nej" ${saved.bus === 'Nej' ? 'selected' : ''}>Nej</option></select>
-              </div>
-              <div class="demo-field">
-                <label for="home-${index}">Hur planerar du att ta dig från festen?</label>
-                <select id="home-${index}">
-                  <option value="">Välj</option>
-                  ${['Nattbuss','Egen bil','Skjuts','Taxi','Annat / vet inte ännu'].map(v => `<option value="${v}" ${saved.home === v ? 'selected' : ''}>${v}</option>`).join('')}
-                </select>
-              </div>
-            </div>
-            <div class="demo-field">
-              <label for="stay-${index}">Var planerar du att bo/sova efter festen?</label>
-              <select id="stay-${index}">
-                <option value="">Välj</option>
-                ${['Tranemo','Svenljunga','Göteborg','Borås','Annan ort','Vet inte ännu'].map(v => `<option value="${v}" ${saved.stay === v ? 'selected' : ''}>${v}</option>`).join('')}
-              </select>
-            </div>
-            ${guest.friday ? `<div class="demo-field"><label for="friday-${index}">Om familjeminglet på fredagen blir av – deltar du?</label><select id="friday-${index}"><option value="">Välj</option><option value="Ja" ${saved.friday === 'Ja' ? 'selected' : ''}>Ja</option><option value="Nej" ${saved.friday === 'Nej' ? 'selected' : ''}>Nej</option></select></div>` : ''}
-            ${guest.sunday ? `<div class="demo-field"><label for="sunday-${index}">Om familjefrukosten på söndagen blir av – deltar du?</label><select id="sunday-${index}"><option value="">Välj</option><option value="Ja" ${saved.sunday === 'Ja' ? 'selected' : ''}>Ja</option><option value="Nej" ${saved.sunday === 'Nej' ? 'selected' : ''}>Nej</option></select></div>` : ''}
-            <div class="demo-field"><label for="song-${index}">Låtönskemål <span style="font-weight:400">(frivilligt)</span></label><input id="song-${index}" value="${esc(saved.song || '')}" placeholder="En låt som får dig upp på dansgolvet"></div>
-            <div class="demo-field"><label for="notes-${index}">Något annat vi bör känna till?</label><textarea id="notes-${index}">${esc(saved.notes || '')}</textarea></div>
-          </section>`;
-      }
-
-      function loadSaved() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { return null; } }
-
-      function renderForm() {
-        const saved = loadSaved();
-        cards.innerHTML = guests.map((g, i) => guestCard(g, i, saved?.guests?.[i] || {})).join('');
-        document.getElementById('contact-email').value = saved?.email || '';
-        login.hidden = true;
-        rsvp.hidden = false;
-        if (saved) renderSummary(saved);
-      }
-
-      function renderSummary(data) {
-        summary.hidden = false;
-        summary.innerHTML = `<h2>Testsvar sparat i denna webbläsare</h2><p>Kontakt: ${esc(data.email || 'Ej angiven')}</p><ul>${data.guests.map((g, i) => `<li><strong>${esc(guests[i].name)}</strong>: ${esc(g.attending || 'Ej valt')} · ${esc(g.food || 'Ingen kostpreferens')} · buss dit: ${esc(g.bus || 'Ej valt')} · hem: ${esc(g.home || 'Ej valt')} · boende: ${esc(g.stay || 'Ej valt')}</li>`).join('')}</ul>`;
-      }
-
-      login.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const code = document.getElementById('invite-code').value.trim().toUpperCase();
-        if (code !== TEST_CODE) { error.hidden = false; return; }
-        error.hidden = true;
-        renderForm();
-      });
-
-      rsvp.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const data = {
-          code: TEST_CODE,
-          email: document.getElementById('contact-email').value.trim(),
-          savedAt: new Date().toISOString(),
-          guests: guests.map((guest, i) => ({
-            attending: document.getElementById(`attending-${i}`).value,
-            food: document.getElementById(`food-${i}`).value,
-            allergies: allergyOptions.filter((_, j) => document.getElementById(`allergy-${i}-${j}`).checked),
-            allergyOther: document.getElementById(`allergy-other-${i}`).value.trim(),
-            bus: document.getElementById(`bus-${i}`).value,
-            home: document.getElementById(`home-${i}`).value,
-            stay: document.getElementById(`stay-${i}`).value,
-            friday: guest.friday ? document.getElementById(`friday-${i}`).value : '',
-            sunday: guest.sunday ? document.getElementById(`sunday-${i}`).value : '',
-            song: document.getElementById(`song-${i}`).value.trim(),
-            notes: document.getElementById(`notes-${i}`).value.trim()
-          }))
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        renderSummary(data);
-        summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-
-      clear.addEventListener('click', () => {
-        localStorage.removeItem(STORAGE_KEY);
-        summary.hidden = true;
-        renderForm();
-      });
-    })();
+  (()=>{
+    const params=new URLSearchParams(location.search);if(params.get('demo')!=='1')return;
+    document.body.classList.add('demo-mode');
+    const CODE='TEST2027',KEY='einar-lovisa-rsvp-demo-v3';
+    const guests=[{name:'Testgäst Ett',friday:true,sunday:true},{name:'Testgäst Två',friday:true,sunday:false}];
+    const allergies=['Gluten eller celiaki','Laktos','Mjölkprotein','Nötter','Jordnötter','Ägg','Fisk','Skaldjur'];
+    const login=document.getElementById('demo-login'),form=document.getElementById('demo-rsvp'),error=document.getElementById('demo-error'),cards=document.getElementById('guest-cards'),summary=document.getElementById('demo-summary');
+    const esc=(v='')=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function saved(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch{return null}}
+    function card(g,i,s={}){
+      const checks=allergies.map((a,j)=>`<label><input type="checkbox" id="a${i}_${j}" ${s.allergies?.includes(a)?'checked':''}> ${a}</label>`).join('');
+      const opts=(list,val)=>list.map(x=>`<option value="${x}" ${val===x?'selected':''}>${x}</option>`).join('');
+      return `<section class="guest-card"><h2>${g.name}</h2>
+        <div class="demo-grid"><div class="demo-field"><label for="att${i}">Kommer du på bröllopet?</label><select id="att${i}" required><option value="">Välj</option>${opts(['Ja','Nej'],s.attending)}</select></div><div class="demo-field"><label for="food${i}">Kostpreferens</label><select id="food${i}"><option value="">Välj</option>${opts(['Äter allt','Vegetariskt','Veganskt','Pescetariskt','Annat'],s.food)}</select></div></div>
+        <div class="demo-field"><fieldset><legend>Allergier eller intoleranser</legend><div class="demo-checks">${checks}</div></fieldset></div>
+        <div class="demo-field"><label for="other${i}">Annat</label><input id="other${i}" value="${esc(s.other||'')}"></div>
+        <div class="demo-grid"><div class="demo-field"><label for="bus${i}">Buss från vigseln till Strömsfors?</label><select id="bus${i}"><option value="">Välj</option>${opts(['Ja','Nej'],s.bus)}</select></div><div class="demo-field"><label for="home${i}">Hur tänker du ta dig från festen?</label><select id="home${i}"><option value="">Välj</option>${opts(['Nattbuss','Egen bil','Skjuts','Taxi','Annat eller vet inte ännu'],s.home)}</select></div></div>
+        <div class="demo-field"><label for="stay${i}">Var planerar du att bo eller sova efter festen?</label><select id="stay${i}"><option value="">Välj</option>${opts(['Tranemo','Svenljunga','Göteborg','Borås','Annan ort','Vet inte ännu'],s.stay)}</select></div>
+        ${g.friday?`<div class="demo-field"><label for="fri${i}">Om familjeminglet på fredagen blir av, deltar du?</label><select id="fri${i}"><option value="">Välj</option>${opts(['Ja','Nej'],s.friday)}</select></div>`:''}
+        ${g.sunday?`<div class="demo-field"><label for="sun${i}">Om familjefrukosten på söndagen blir av, deltar du?</label><select id="sun${i}"><option value="">Välj</option>${opts(['Ja','Nej'],s.sunday)}</select></div>`:''}
+        <div class="demo-field"><label for="song${i}">Låtönskemål, frivilligt</label><input id="song${i}" value="${esc(s.song||'')}"></div>
+        <div class="demo-field"><label for="notes${i}">Något annat vi bör känna till?</label><textarea id="notes${i}">${esc(s.notes||'')}</textarea></div></section>`;
+    }
+    function show(){const s=saved();cards.innerHTML=guests.map((g,i)=>card(g,i,s?.guests?.[i]||{})).join('');document.getElementById('contact-email').value=s?.email||'';login.hidden=true;form.hidden=false;if(s)showSummary(s)}
+    function showSummary(s){summary.hidden=false;summary.innerHTML=`<h2>Testsvar sparat</h2><p>Kontakt: ${esc(s.email||'Ej angiven')}</p><ul>${s.guests.map((g,i)=>`<li><strong>${guests[i].name}</strong>: ${esc(g.attending||'Ej valt')}, ${esc(g.food||'kost ej vald')}, ${esc(g.bus||'buss ej vald')}, ${esc(g.home||'hemresa ej vald')}</li>`).join('')}</ul>`}
+    login.addEventListener('submit',e=>{e.preventDefault();if(document.getElementById('invite-code').value.trim().toUpperCase()!==CODE){error.hidden=false;return}error.hidden=true;show()});
+    form.addEventListener('submit',e=>{e.preventDefault();const data={email:document.getElementById('contact-email').value.trim(),guests:guests.map((g,i)=>({attending:document.getElementById(`att${i}`).value,food:document.getElementById(`food${i}`).value,allergies:allergies.filter((a,j)=>document.getElementById(`a${i}_${j}`).checked),other:document.getElementById(`other${i}`).value.trim(),bus:document.getElementById(`bus${i}`).value,home:document.getElementById(`home${i}`).value,stay:document.getElementById(`stay${i}`).value,friday:g.friday?document.getElementById(`fri${i}`).value:'',sunday:g.sunday?document.getElementById(`sun${i}`).value:'',song:document.getElementById(`song${i}`).value.trim(),notes:document.getElementById(`notes${i}`).value.trim()}))};localStorage.setItem(KEY,JSON.stringify(data));showSummary(data);summary.scrollIntoView({behavior:'smooth',block:'center'})});
+    document.getElementById('clear-demo').addEventListener('click',()=>{localStorage.removeItem(KEY);summary.hidden=true;show()});
+  })();
   </script>
 </body>
 </html>
