@@ -1,0 +1,1 @@
+Alfreds hjälmbild används i assets/alfred.jpg. Versionsparameter används i toastteamets sida för att undvika gammal webbläsarcache.
