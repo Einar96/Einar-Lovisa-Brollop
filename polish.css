@@ -5,6 +5,13 @@
   display: none !important;
 }
 
+.main-nav {
+  gap: clamp(8px, 1.1vw, 20px);
+}
+.nav-link {
+  white-space: nowrap;
+}
+
 .timeline-item {
   grid-template-columns: 1fr !important;
   gap: 0 !important;
@@ -27,6 +34,38 @@
   display: none !important;
 }
 
+.home-venue-sheet {
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  padding: 64px 24px;
+  background: url('assets/stromsfors-bruk.jpg') center center / cover no-repeat;
+  color: var(--cream);
+  overflow: hidden;
+}
+.home-venue-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(11,38,32,.22), rgba(11,38,32,.58));
+}
+.home-venue-copy {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  text-align: center;
+}
+.home-venue-copy h2 {
+  margin: 0 0 18px;
+  font-family: var(--serif);
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 400;
+}
+.home-venue-copy p:not(.eyebrow) {
+  margin: 0 auto 28px;
+  font-size: clamp(18px, 2vw, 24px);
+}
+
 .person-photo {
   width: calc(100% + 60px);
   max-width: none;
@@ -36,7 +75,7 @@
   object-position: center 38%;
 }
 .alfred-photo {
-  object-position: center 34%;
+  object-position: center 35%;
 }
 .savannah-photo-placeholder {
   min-height: 310px;
@@ -49,6 +88,11 @@
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
+}
+.person-intro {
+  margin: 12px 0 0;
+  color: var(--text-soft);
+  line-height: 1.55;
 }
 
 .story-main-photo {
@@ -76,6 +120,21 @@
   object-position: center;
   display: block;
   box-shadow: var(--shadow);
+}
+
+.wishlist-home .narrow,
+.wishlist-section .narrow {
+  text-align: center;
+}
+.wishlist-section {
+  min-height: 52vh;
+  display: grid;
+  align-items: center;
+}
+
+.practical-note {
+  margin-top: 34px;
+  text-align: center;
 }
 
 .church-placeholder {
@@ -116,6 +175,9 @@
   }
   .location-art {
     min-height: 360px;
+  }
+  .home-venue-sheet {
+    min-height: 72vh;
   }
   .home-story-media {
     min-height: auto;
