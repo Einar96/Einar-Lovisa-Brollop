@@ -1,0 +1,1 @@
+Vald källbild är hjälmbilden som användaren skickade. Toastteamets HTML använder en versionsparameter för att tvinga omladdning.
