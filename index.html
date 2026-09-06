@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#173b32">
   <title>Einar & Lovisa | 21 augusti 2027</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="extras.css">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -23,12 +24,25 @@
 
       <div class="nav-item has-dropdown">
         <button class="nav-link nav-button" type="button" aria-expanded="false">
+          Om oss <span class="chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div class="dropdown" role="menu">
+          <a href="om-oss.html#historia" role="menuitem">Vår historia</a>
+          <a href="om-oss.html#tidslinje" role="menuitem">Tidslinje</a>
+          <a href="om-oss.html#resor" role="menuitem">Några minnen</a>
+        </div>
+      </div>
+
+      <div class="nav-item has-dropdown">
+        <button class="nav-link nav-button" type="button" aria-expanded="false">
           Bröllopet <span class="chevron" aria-hidden="true">⌄</span>
         </button>
         <div class="dropdown" role="menu">
           <a href="#dagen" role="menuitem">Bröllopsdagen</a>
           <a href="#vigsel" role="menuitem">Vigseln</a>
           <a href="#fest" role="menuitem">Middag & fest</a>
+          <a href="#vart-folk" role="menuitem">Vårt folk</a>
+          <a href="tal-spex.html" role="menuitem">Tal & spex</a>
         </div>
       </div>
 
@@ -39,7 +53,10 @@
         <div class="dropdown" role="menu">
           <a href="#transport" role="menuitem">Transport</a>
           <a href="#boende" role="menuitem">Boende</a>
+          <a href="#resa-hit" role="menuitem">Resa hit</a>
+          <a href="#parkering" role="menuitem">Parkering</a>
           <a href="#praktiskt" role="menuitem">Bra att veta</a>
+          <a href="#senaste" role="menuitem">Senaste nytt</a>
         </div>
       </div>
 
@@ -57,7 +74,7 @@
         <h1 id="hero-title">Einar <span>&</span> Lovisa</h1>
         <div class="hero-rule" aria-hidden="true"></div>
         <p class="hero-date">21 augusti 2027</p>
-        <p class="hero-place">Strömsfors Bruk · Västra Götaland</p>
+        <p class="hero-place">Middag & fest · Strömsfors Bruk</p>
         <div class="hero-actions">
           <a class="button button-light" href="osa.html">OSA</a>
           <a class="button button-ghost" href="#dagen">Praktisk information</a>
@@ -84,6 +101,32 @@
         <h2>Vi hoppas att ni vill fira med oss.</h2>
         <p class="lead">Den 21 augusti 2027 gifter vi oss. Här samlar vi all information inför bröllopet – från vigsel och transport till boende, klädkod och OSA.</p>
         <p>Sidan uppdateras löpande när de sista detaljerna faller på plats.</p>
+        <a class="text-link" href="om-oss.html">Läs vår historia <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="section latest-section" id="senaste">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Senaste nytt</p>
+        <h2>Aktuellt just nu</h2>
+        <p>Här visar vi bara information som fortfarande är aktuell. När något ändras uppdateras sidan.</p>
+      </div>
+      <div class="latest-grid">
+        <article class="latest-card reveal">
+          <time datetime="2026-09-06">6 september 2026</time>
+          <h3>Hemsidan är igång</h3>
+          <p>Den första versionen är publicerad och kommer att fyllas på med bilder, vigselplats och praktiska detaljer.</p>
+        </article>
+        <article class="latest-card reveal">
+          <time datetime="2026-09-06">6 september 2026</time>
+          <h3>Vigselplatsen är inte spikad</h3>
+          <p>Vi tittar på en mindre kyrka inom rimligt avstånd från Strömsfors Bruk. Information kommer så snart den är bokad.</p>
+        </article>
+        <article class="latest-card reveal">
+          <time datetime="2026-09-06">6 september 2026</time>
+          <h3>OSA öppnar efter årsskiftet</h3>
+          <p>Varje inbjudan får en personlig kod som används för att svara för just de personer som är inbjudna.</p>
+        </article>
       </div>
     </section>
 
@@ -91,52 +134,56 @@
       <div class="section-heading reveal">
         <p class="eyebrow light">Lördagen den 21 augusti</p>
         <h2>Bröllopsdagen</h2>
-        <p>Exakta tider och vigselplats publiceras när allt är bekräftat. Upplägget nedan visar hur dagen är planerad i stora drag.</p>
+        <p>Tiderna nedan är preliminära förhållningstider. Detaljerna uppdateras när vigselplats och transporter är helt fastställda.</p>
       </div>
 
       <div class="timeline">
         <article class="timeline-item reveal" id="vigsel">
           <span class="timeline-number">01</span>
           <div>
-            <p class="timeline-time">Tid meddelas senare</p>
-            <h3>Vigsel</h3>
-            <p>Vigseln sker i en kyrka inom rimligt avstånd från Strömsfors Bruk. Kyrka, samlingstid, adress och parkeringsinformation publiceras så snart bokningen är klar.</p>
+            <p class="timeline-time">Preliminärt 12.30</p>
+            <h3>Samling</h3>
+            <p>Vi ber gästerna att vara på plats ungefär 30 minuter före vigseln. Kyrka, adress och parkering publiceras när bokningen är klar.</p>
           </div>
         </article>
-
         <article class="timeline-item reveal">
           <span class="timeline-number">02</span>
+          <div>
+            <p class="timeline-time">Preliminärt 13.00</p>
+            <h3>Vigsel</h3>
+            <p>Vår ambition är en kort och personlig kyrklig vigsel. Exakt upplägg och längd bestäms tillsammans med vigselprästen.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <span class="timeline-number">03</span>
           <div>
             <p class="timeline-time">Efter vigseln</p>
             <h3>Gemensam transport</h3>
             <p>Bussar tar gästerna från vigselplatsen till Strömsfors Bruk. Plats på bussen bokas i samband med OSA.</p>
           </div>
         </article>
-
         <article class="timeline-item reveal">
-          <span class="timeline-number">03</span>
+          <span class="timeline-number">04</span>
           <div>
             <p class="timeline-time">Eftermiddag</p>
             <h3>Mingel</h3>
             <p>Efter ankomst till bruket samlas vi för mingel innan middagen börjar.</p>
           </div>
         </article>
-
         <article class="timeline-item reveal" id="fest">
-          <span class="timeline-number">04</span>
+          <span class="timeline-number">05</span>
           <div>
             <p class="timeline-time">Kväll</p>
             <h3>Middag & fest</h3>
-            <p>Middag, tal och festligheter följs av bar, musik och dans. Mer detaljer kommer när kvällens schema är fastställt.</p>
+            <p>Middag, tal och festligheter följs av bar, musik och dans. Menyn avslöjas först på plats.</p>
           </div>
         </article>
-
         <article class="timeline-item reveal">
-          <span class="timeline-number">05</span>
+          <span class="timeline-number">06</span>
           <div>
-            <p class="timeline-time">Natt</p>
+            <p class="timeline-time">Preliminärt omkring 01.30</p>
             <h3>Returbussar</h3>
-            <p>Förbokade bussar avgår under natten. Exakta linjer och tider sätts utifrån gästernas behov och publiceras här när de är klara.</p>
+            <p>Förbokade nattbussar planeras. Exakta linjer sätts utifrån gästernas behov och OSA-svar.</p>
           </div>
         </article>
       </div>
@@ -148,7 +195,7 @@
           <p class="eyebrow">Middag & fest</p>
           <h2>Strömsfors Bruk</h2>
           <p class="lead">Efter vigseln fortsätter firandet i bruksmiljön på Strömsfors Bruk.</p>
-          <p>Här lägger vi senare in fullständig adress, parkeringsinformation och annan praktisk information som gäster behöver inför ankomsten.</p>
+          <p>Parkering finns vid bruket. Möjligheten att låta bilen stå kvar över natten kontrolleras och publiceras här när den är bekräftad.</p>
           <a class="text-link" href="#transport">Se transportinformationen <span>→</span></a>
         </div>
         <div class="location-art" aria-hidden="true">
@@ -160,170 +207,128 @@
       </div>
     </section>
 
+    <section class="section" id="vart-folk">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Vårt folk</p>
+        <h2>Personerna som håller ihop kvällen</h2>
+        <p>Har du planer på tal, spex eller en överraskning är det toastteamet du ska prata med – inte brudparet.</p>
+      </div>
+      <div class="people-grid">
+        <article class="person-card reveal">
+          <div class="person-photo-placeholder" aria-label="Foto på Johannes kommer senare">Foto kommer</div>
+          <p class="person-role">Brudens toastmaster</p>
+          <h3>Johannes Wiedel</h3>
+          <p>Presentation kommer när bilderna är på plats.</p>
+        </article>
+        <article class="person-card reveal">
+          <div class="person-photo-placeholder" aria-label="Foto på Alfred kommer senare">Foto kommer</div>
+          <p class="person-role">Brudgummens toastmaster</p>
+          <h3>Alfred Pålsson Höök</h3>
+          <p>Presentation kommer när bilderna är på plats.</p>
+        </article>
+        <article class="person-card reveal muted-person">
+          <div class="person-photo-placeholder">?</div>
+          <p class="person-role">Gemensam toastmadame</p>
+          <h3>Presenteras senare</h3>
+          <p>Den tredje delen av toastteamet är ännu inte offentlig.</p>
+        </article>
+      </div>
+      <div class="center-actions reveal">
+        <a class="button button-solid" href="tal-spex.html">Anmäl tal, spex eller överraskning</a>
+      </div>
+    </section>
+
     <section class="section" id="transport">
       <div class="section-heading reveal">
         <p class="eyebrow">Ta er dit och hem</p>
         <h2>Transport</h2>
         <p>Vi vill göra logistiken så enkel som möjligt. Den slutliga informationen kompletteras när vigselplats och bussupplägg är bekräftade.</p>
       </div>
-
       <div class="card-grid three">
-        <article class="info-card reveal">
-          <span class="card-number">01</span>
-          <h3>Till vigseln</h3>
-          <p>Adress, parkering, rekommenderad ankomsttid och annan information publiceras när kyrkan är bestämd.</p>
-        </article>
-        <article class="info-card reveal">
-          <span class="card-number">02</span>
-          <h3>Vigsel → fest</h3>
-          <p>Gemensamma bussar går från vigseln till Strömsfors Bruk. I OSA:n anger ni om ni önskar plats.</p>
-        </article>
-        <article class="info-card reveal">
-          <span class="card-number">03</span>
-          <h3>Nattbuss</h3>
-          <p>Returbussar planeras mot utvalda destinationer. Linjerna fastställs utifrån OSA-svaren och publiceras senare.</p>
-        </article>
+        <article class="info-card reveal"><span class="card-number">01</span><h3>Till vigseln</h3><p>Adress, parkering och slutlig ankomsttid publiceras när kyrkan är bestämd.</p></article>
+        <article class="info-card reveal"><span class="card-number">02</span><h3>Vigsel → fest</h3><p>Gemensamma bussar går från vigseln till Strömsfors Bruk. I OSA:n anger ni om ni önskar plats.</p></article>
+        <article class="info-card reveal"><span class="card-number">03</span><h3>Efter festen</h3><p>I OSA:n anger ni om ni tänker åka nattbuss, egen bil, skjuts, taxi eller annat – och vilken ort ni planerar att sova i.</p></article>
+      </div>
+    </section>
+
+    <section class="section travel-section" id="resa-hit">
+      <div class="section-heading reveal">
+        <p class="eyebrow">För långväga gäster</p>
+        <h2>Resa hit</h2>
+        <p>Detaljerade resvägar från Göteborg och andra orter läggs in när vigselplatsen och nattbussarnas upplägg är slutligt bestämda.</p>
+      </div>
+      <div class="mini-grid">
+        <article class="mini-card reveal"><h3>Från Göteborg</h3><p>Vi kompletterar med rekommenderad resväg och eventuell bussinformation när upplägget är klart.</p></article>
+        <article class="mini-card reveal"><h3>Med bil</h3><p>Parkering finns vid Strömsfors Bruk. Parkering vid vigselplatsen kompletteras när kyrkan är bestämd.</p></article>
+        <article class="mini-card reveal"><h3>Taxi</h3><p>Rekommenderade taxialternativ publiceras närmare bröllopet om det behövs.</p></article>
       </div>
     </section>
 
     <section class="section section-warm" id="boende">
       <div class="section-heading reveal">
-        <p class="eyebrow">För långväga gäster</p>
+        <p class="eyebrow">Sov gott</p>
         <h2>Boende</h2>
-        <p>Vi sammanställer boendealternativ som fungerar väl tillsammans med transporten på bröllopsnatten.</p>
+        <p>Vi tar fram ett mindre antal rekommenderade alternativ som fungerar så bra som möjligt med nattbussarna.</p>
       </div>
-
       <div class="stay-grid">
-        <article class="stay-card reveal">
-          <span>01</span>
-          <h3>Nära Strömsfors</h3>
-          <p>Boenden med kortast avstånd till festplatsen.</p>
-          <small>Alternativ publiceras senare</small>
-        </article>
-        <article class="stay-card reveal">
-          <span>02</span>
-          <h3>Svenljunga</h3>
-          <p>Boenden som kan bli aktuella i förhållande till nattbussarnas sträckning.</p>
-          <small>Alternativ publiceras senare</small>
-        </article>
-        <article class="stay-card reveal">
-          <span>03</span>
-          <h3>Tranemo</h3>
-          <p>Boenden som kan bli aktuella i förhållande till nattbussarnas sträckning.</p>
-          <small>Alternativ publiceras senare</small>
-        </article>
+        <article class="stay-card reveal"><span>01</span><h3>Nära Strömsfors</h3><p>Boenden med kortast avstånd till festplatsen.</p><small>Alternativ publiceras senare</small></article>
+        <article class="stay-card reveal"><span>02</span><h3>Svenljunga</h3><p>Ett av områdena vi undersöker för boende och eventuell nattbusstrafik.</p><small>Alternativ publiceras senare</small></article>
+        <article class="stay-card reveal"><span>03</span><h3>Tranemo</h3><p>Ett av områdena vi undersöker för boende och eventuell nattbusstrafik.</p><small>Alternativ publiceras senare</small></article>
+      </div>
+    </section>
+
+    <section class="section parking-section" id="parkering">
+      <div class="section-heading reveal"><p class="eyebrow">Med bil</p><h2>Parkering</h2></div>
+      <div class="narrow info-panel reveal">
+        <p class="lead">Parkering finns vid Strömsfors Bruk.</p>
+        <p>Vi kontrollerar fortfarande om bilar får stå kvar över natten och när de i så fall behöver hämtas på söndagen. Laddning för elbil finns inte på plats. Möjlighet att lämna av nära entrén finns.</p>
       </div>
     </section>
 
     <section class="section dress-section" id="kladkod">
       <div class="dress-layout">
-        <div class="reveal">
-          <p class="eyebrow">Klädsel</p>
-          <h2>Klädkod</h2>
-        </div>
-        <div class="dress-copy reveal">
-          <p class="status-pill">Publiceras senare</p>
-          <p class="lead">Klädkoden är ännu inte slutligt fastställd.</p>
-          <p>När den är beslutad publicerar vi en tydlig guide här med exempel och förklaringar, så att ingen behöver fundera över vad som gäller.</p>
-        </div>
+        <div class="reveal"><p class="eyebrow">Klädsel</p><h2>Klädkod</h2></div>
+        <div class="dress-copy reveal"><p class="status-pill">Publiceras senare</p><p class="lead">Klädkoden är ännu inte slutligt fastställd.</p><p>Vi tittar på en formell men somrig nivå och publicerar en tydlig guide när beslutet är fattat.</p></div>
       </div>
     </section>
 
     <section class="section section-dark" id="praktiskt">
-      <div class="section-heading reveal">
-        <p class="eyebrow light">Bra att veta</p>
-        <h2>Praktisk information</h2>
-      </div>
-
+      <div class="section-heading reveal"><p class="eyebrow light">Bra att veta</p><h2>Praktisk information</h2></div>
       <div class="practical-grid">
-        <article class="practical-card reveal">
-          <h3>Vuxenbröllop</h3>
-          <p>Bröllopsfirandet är planerat som ett vuxenbröllop. Inbjudan gäller de personer som anges på inbjudan och i OSA-systemet.</p>
-        </article>
-        <article class="practical-card reveal">
-          <h3>Mat & allergier</h3>
-          <p>Matpreferenser, allergier och intoleranser anges individuellt i OSA:n.</p>
-        </article>
-        <article class="practical-card reveal">
-          <h3>Tal & spex</h3>
-          <p>Kontaktuppgifter till toastmaster och toastmadame publiceras när rollerna är helt fastställda.</p>
-        </article>
-        <article class="practical-card reveal">
-          <h3>Presenter</h3>
-          <p>Information om eventuella presentönskemål publiceras längre fram.</p>
-        </article>
-        <article class="practical-card reveal">
-          <h3>Fotografering</h3>
-          <p>Information om fotografering under vigseln och hur ni kan dela era egna bilder kommer närmare bröllopet.</p>
-        </article>
-        <article class="practical-card reveal">
-          <h3>Tillgänglighet</h3>
-          <p>Behöver du särskild tillgänglighetsanpassning kan det anges i OSA:n. Mer information om lokalerna publiceras senare.</p>
-        </article>
+        <article class="practical-card reveal"><h3>Vuxenbröllop</h3><p>Bröllopet är i huvudsak ett vuxenbröllop. Inbjudan gäller de personer som anges på inbjudan. Några uttryckligen inbjudna barn utgör undantag.</p></article>
+        <article class="practical-card reveal"><h3>+1</h3><p>Det går inte att lägga till egna gäster i OSA:n. De personer som hör till er inbjudan visas automatiskt med den personliga koden.</p></article>
+        <article class="practical-card reveal"><h3>Mat & allergier</h3><p>Kostpreferens och allergier/intoleranser anges separat i OSA:n. Menyn avslöjas först på bröllopet.</p></article>
+        <article class="practical-card reveal"><h3>Tal & spex</h3><p>Tal, spex och överraskningar anmäls via ett separat formulär till toastteamet. Preliminär deadline är 31 maj 2027.</p></article>
+        <article class="practical-card reveal"><h3>Fotografering</h3><p>Gäster får gärna dela bilder. Vi planerar även ett gemensamt fotoalbum där bilder från helgen kan samlas.</p></article>
+        <article class="practical-card reveal"><h3>Tillgänglighet</h3><p>Behöver du särskild tillgänglighetsanpassning ber vi dig kontakta oss direkt så löser vi det så långt det är möjligt.</p></article>
       </div>
     </section>
 
     <section class="section" id="faq">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Frågor & svar</p>
-        <h2>FAQ</h2>
-      </div>
-
+      <div class="section-heading reveal"><p class="eyebrow">Frågor & svar</p><h2>FAQ</h2></div>
       <div class="faq-list reveal">
-        <details>
-          <summary>När öppnar OSA?</summary>
-          <p>OSA öppnar efter årsskiftet. När det är dags använder ni den personliga kod som står på er inbjudan.</p>
-        </details>
-        <details>
-          <summary>Kan jag ta med en +1?</summary>
-          <p>Inbjudan gäller de personer som är registrerade på er personliga inbjudningskod. Om en +1 ingår kommer det att framgå där.</p>
-        </details>
-        <details>
-          <summary>Är barn välkomna?</summary>
-          <p>Bröllopet är planerat som ett vuxenbröllop om inget annat uttryckligen anges på inbjudan.</p>
-        </details>
-        <details>
-          <summary>Hur meddelar jag allergier eller specialkost?</summary>
-          <p>Det görs individuellt i OSA:n, där matpreferens och allergi registreras separat.</p>
-        </details>
-        <details>
-          <summary>Kan jag ändra mitt OSA-svar?</summary>
-          <p>Ja. När OSA-systemet öppnar kommer samma personliga kod kunna användas för att visa och ändra svar fram till sista OSA-dag.</p>
-        </details>
-        <details>
-          <summary>Kommer det att finnas buss?</summary>
-          <p>Ja. Vi planerar gemensam transport från vigseln till festen samt nattbussar efter festen. Platser bokas via OSA.</p>
-        </details>
-        <details>
-          <summary>Var kan jag bo?</summary>
-          <p>Rekommenderade boenden och bokningsinformation publiceras under Boende när alternativen är klara.</p>
-        </details>
-        <details>
-          <summary>När börjar vigseln?</summary>
-          <p>Exakt tid publiceras så snart vigselplats och schema är fastställda.</p>
-        </details>
-        <details>
-          <summary>Kan jag hålla tal eller ordna ett spex?</summary>
-          <p>Ja. Kontaktuppgifter och sista anmälningsdag publiceras här när toastmasterupplägget är klart.</p>
-        </details>
+        <details><summary>När öppnar OSA?</summary><p>OSA öppnar efter årsskiftet. Sista svarsdag fastställs när den praktiska planeringen är längre gången.</p></details>
+        <details><summary>Hur fungerar OSA-koden?</summary><p>Varje hushåll eller inbjudan får en unik kod. När koden anges visas endast de personer som hör till just den inbjudan.</p></details>
+        <details><summary>Kan jag ta med en +1?</summary><p>Inbjudan gäller de personer vars namn anges på inbjudan och visas i OSA-systemet.</p></details>
+        <details><summary>Är barn välkomna?</summary><p>Bröllopet är i huvudsak ett vuxenbröllop. Om ett barn är inbjudet framgår det uttryckligen på inbjudan.</p></details>
+        <details><summary>Hur meddelar jag allergier eller specialkost?</summary><p>Det görs individuellt i OSA:n. Vi skiljer på kostpreferens och allergi/intolerans.</p></details>
+        <details><summary>Kan jag ändra mitt OSA-svar?</summary><p>Ja. Samma personliga kod kommer kunna användas för att visa och ändra svar fram till dess att OSA stänger.</p></details>
+        <details><summary>Kommer det finnas buss?</summary><p>Ja. Vi planerar buss från vigselplatsen till Strömsfors Bruk och nattbussar efter festen. Behov och destination anges i OSA:n.</p></details>
+        <details><summary>Var kan jag bo?</summary><p>Vi tar fram rekommendationer nära Strömsfors samt i Svenljunga och Tranemo.</p></details>
+        <details><summary>Finns parkering?</summary><p>Ja, parkering finns vid Strömsfors Bruk. Möjligheten att lämna bilen över natten kontrolleras.</p></details>
+        <details><summary>Kan jag hålla tal eller ordna spex?</summary><p>Ja. Använd sidan Tal & spex så går informationen till toastteamet och inte till brudparet.</p></details>
+        <details><summary>Vad händer på fredagen?</summary><p>Ett mindre familjemingel övervägs. Om det blir av visas informationen endast för de gäster som är inbjudna till det.</p></details>
+        <details><summary>Vad händer på söndagen?</summary><p>Ingen officiell aktivitet för hela gästlistan är planerad. En enkel familjefrukost kan bli aktuell och visas i så fall bara för berörda gäster.</p></details>
       </div>
     </section>
 
     <section class="rsvp-banner">
-      <div class="reveal">
-        <p class="eyebrow light">Vi hoppas att ni kommer</p>
-        <h2>OSA</h2>
-        <p>När OSA öppnar efter årsskiftet använder ni den personliga kod som står på er inbjudan.</p>
-        <a class="button button-light" href="osa.html">Till OSA</a>
-      </div>
+      <div class="reveal"><p class="eyebrow light">Vi hoppas att ni kommer</p><h2>OSA</h2><p>När OSA öppnar efter årsskiftet använder ni den personliga kod som står på er inbjudan.</p><a class="button button-light" href="osa.html">Till OSA</a></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div>
-      <strong>Einar <i>&</i> Lovisa</strong>
-      <span>21 augusti 2027</span>
-    </div>
+    <div><strong>Einar <i>&</i> Lovisa</strong><span>21 augusti 2027</span></div>
     <a href="#top">Till toppen ↑</a>
   </footer>
 </body>
