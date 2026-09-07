@@ -9,11 +9,12 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="extras.css">
   <link rel="stylesheet" href="polish.css">
+  <script src="config.js"></script>
   <script src="script.js" defer></script>
 </head>
 <body class="subpage form-page">
   <header class="site-header" id="top">
-    <a class="brand" href="index.html" aria-label="Einar och Lovisa, startsida"><span class="brand-mark">E <i>&</i> L</span><span class="brand-date">21 · 08 · 2027</span></a>
+    <a class="brand" href="index.html" aria-label="Einar och Lovisa, startsida"><span class="brand-mark">E <i>&amp;</i> L</span><span class="brand-date">21 · 08 · 2027</span></a>
     <nav class="main-nav" aria-label="Huvudmeny">
       <a class="nav-link" href="index.html">Hem</a>
       <a class="nav-link" href="om-oss.html">Om oss</a>
@@ -31,35 +32,85 @@
     <section class="form-shell">
       <p class="eyebrow">Till toastteamet</p>
       <h1>Tal, spex och överraskningar</h1>
-      <p class="lead">Vill du hålla tal, göra ett spex, spela musik eller planera en överraskning? Det är här anmälan kommer att göras.</p>
-      <p>Brudens toastmaster är Johannes Wiedel, tänkt gemensam toastmadame är Savannah Gillblad och brudgummens toastmaster är Alfred Pålsson Höök.</p>
-      <div class="form-notice"><strong>Sista dag är 31 maj 2027.</strong> Formuläret är förberett men själva inskicket kopplas in innan inbjudningarna går ut.</div>
+      <p class="lead">Vill du hålla tal, göra ett spex, spela musik eller planera en överraskning? Anmäl det här.</p>
+      <p>Brudens toastmaster är Johannes Wiedel. Savannah Gillblad är preliminär gemensam toastmadame och brudgummens toastmaster är Alfred Pålsson Höök.</p>
+      <div class="form-notice"><strong>Sista dag är 31 maj 2027.</strong> Om något ska vara hemligt för oss kan du markera det i formuläret.</div>
 
-      <form id="toast-form" class="form-disabled" aria-label="Förhandsvisning av formulär för tal och spex">
+      <form id="toast-form" aria-label="Formulär för tal och spex">
         <div class="form-row">
-          <div class="form-group"><label for="toast-name">Namn</label><input id="toast-name" type="text" placeholder="Förnamn och efternamn"></div>
-          <div class="form-group"><label for="toast-email">Mejladress</label><input id="toast-email" type="email" placeholder="namn@exempel.se"></div>
+          <div class="form-group"><label for="toast-name">Namn</label><input id="toast-name" type="text" placeholder="Förnamn och efternamn" required></div>
+          <div class="form-group"><label for="toast-email">Mejladress</label><input id="toast-email" type="email" placeholder="namn@exempel.se" required></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label for="toast-type">Vad vill du göra?</label><select id="toast-type"><option>Välj</option><option>Tal</option><option>Spex</option><option>Sång eller musik</option><option>Film</option><option>Överraskning</option><option>Annat</option></select></div>
+          <div class="form-group"><label for="toast-type">Vad vill du göra?</label><select id="toast-type" required><option value="">Välj</option><option>Tal</option><option>Spex</option><option>Sång eller musik</option><option>Film</option><option>Överraskning</option><option>Annat</option></select></div>
           <div class="form-group"><label for="toast-length">Ungefärlig längd</label><input id="toast-length" type="text" placeholder="Exempel: 4 minuter"></div>
         </div>
         <div class="form-group"><label for="toast-description">Beskriv kort vad du planerar</label><textarea id="toast-description"></textarea></div>
         <div class="form-group"><label for="toast-participants">Vilka deltar?</label><textarea id="toast-participants" placeholder="Namn eller grupp"></textarea></div>
         <div class="form-group"><fieldset><legend>Behöver du något tekniskt?</legend><div class="check-grid">
-          <label class="check-option"><input type="checkbox"> Mikrofon</label>
-          <label class="check-option"><input type="checkbox"> Ljuduppspelning</label>
-          <label class="check-option"><input type="checkbox"> Projektor eller skärm</label>
-          <label class="check-option"><input type="checkbox"> Annat</label>
+          <label class="check-option"><input id="toast-mic" type="checkbox"> Mikrofon</label>
+          <label class="check-option"><input id="toast-audio" type="checkbox"> Ljuduppspelning</label>
+          <label class="check-option"><input id="toast-projector" type="checkbox"> Projektor eller skärm</label>
         </div></fieldset></div>
         <div class="form-group"><label for="toast-tech">Övriga tekniska behov</label><textarea id="toast-tech"></textarea></div>
-        <div class="form-group"><label for="toast-secret">Ska detta hållas hemligt för brudparet?</label><select id="toast-secret"><option>Välj</option><option>Ja</option><option>Nej</option></select></div>
+        <div class="form-group"><label for="toast-secret">Ska detta hållas hemligt för brudparet?</label><select id="toast-secret"><option value="">Välj</option><option>Ja</option><option>Nej</option></select></div>
         <div class="form-group"><label for="toast-notes">Övrig information till toastteamet</label><textarea id="toast-notes"></textarea></div>
-        <button class="form-button" type="button" disabled>Skicka till toastteamet</button>
+        <button class="form-button" type="submit">Skicka till toastteamet</button>
+        <p id="toast-error" class="rsvp-error" hidden></p>
+        <div id="toast-success" class="rsvp-success" hidden><strong>Tack.</strong> Anmälan är skickad till toastteamet.</div>
       </form>
     </section>
   </main>
 
-  <footer class="site-footer"><div><strong>Einar <i>&</i> Lovisa</strong><span>21 augusti 2027</span></div><a href="index.html">Till startsidan</a></footer>
+  <footer class="site-footer"><div><strong>Einar <i>&amp;</i> Lovisa</strong><span>21 augusti 2027</span></div><a href="index.html">Till startsidan</a></footer>
+
+  <script>
+  (() => {
+    const API = String(window.WEDDING_API_URL || '').trim();
+    const form = document.getElementById('toast-form');
+    const error = document.getElementById('toast-error');
+    const success = document.getElementById('toast-success');
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      error.hidden = true;
+      success.hidden = true;
+
+      if (!API) {
+        error.textContent = 'Formuläret är förberett men den tekniska kopplingen är ännu inte aktiverad.';
+        error.hidden = false;
+        return;
+      }
+
+      const payload = {
+        action:'saveToast',
+        name:document.getElementById('toast-name').value.trim(),
+        email:document.getElementById('toast-email').value.trim(),
+        type:document.getElementById('toast-type').value,
+        length:document.getElementById('toast-length').value.trim(),
+        description:document.getElementById('toast-description').value.trim(),
+        participants:document.getElementById('toast-participants').value.trim(),
+        microphone:document.getElementById('toast-mic').checked,
+        audio:document.getElementById('toast-audio').checked,
+        projector:document.getElementById('toast-projector').checked,
+        otherTech:document.getElementById('toast-tech').value.trim(),
+        secret:document.getElementById('toast-secret').value,
+        notes:document.getElementById('toast-notes').value.trim()
+      };
+
+      try {
+        const response = await fetch(API, {method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        const data = await response.json();
+        if (!data.ok) throw new Error(data.error || 'Anmälan kunde inte sparas.');
+        form.reset();
+        success.hidden = false;
+        success.scrollIntoView({behavior:'smooth',block:'center'});
+      } catch (err) {
+        error.textContent = err.message || 'Något gick fel när anmälan skulle skickas.';
+        error.hidden = false;
+      }
+    });
+  })();
+  </script>
 </body>
 </html>
