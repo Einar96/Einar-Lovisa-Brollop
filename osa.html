@@ -9,24 +9,32 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="extras.css">
   <link rel="stylesheet" href="polish.css">
+  <script src="config.js"></script>
   <script src="script.js" defer></script>
   <style>
-    .demo-only{display:none}.demo-mode .demo-only{display:block}.demo-mode .prod-only{display:none}
-    .demo-note{margin:18px 0;padding:14px 16px;background:#fff7e8;border:1px solid rgba(182,154,106,.45);color:#4b4030;text-align:left}
-    .demo-error{margin-top:12px;color:#7a2731;font-weight:700}.guest-card{margin:28px 0 0;padding:22px;border:1px solid rgba(23,59,50,.18);background:#fffdf9;text-align:left}
-    .guest-card h2{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;color:#173b32;font-weight:400}.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-    .demo-field{margin:0 0 16px}.demo-field label,.demo-field legend{display:block;margin-bottom:7px;font-weight:700;font-size:13px;color:#173b32}.demo-field fieldset{margin:0;padding:0;border:0}
-    .demo-field select,.demo-field input,.demo-field textarea{width:100%;padding:12px 13px;border:1px solid rgba(23,59,50,.25);background:white;color:#1b211e}.demo-field textarea{min-height:88px;resize:vertical}
-    .demo-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}.demo-checks label{display:flex;gap:8px;align-items:center;margin:0;font-weight:400}.demo-checks input{width:auto}
-    .demo-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.demo-secondary{border:1px solid #173b32;background:transparent;color:#173b32;padding:12px 18px;cursor:pointer}
-    .demo-summary{margin-top:26px;padding:22px;background:#173b32;color:#f6f0e7;text-align:left}.demo-summary h2{margin-top:0;font-family:Georgia,'Times New Roman',serif;font-weight:400}
-    .invite-level{margin:12px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#7a2731;font-weight:700}
-    @media(max-width:650px){.demo-grid,.demo-checks{grid-template-columns:1fr}}
+    .rsvp-shell{width:min(880px,calc(100% - 32px));margin:64px auto 90px}
+    .rsvp-panel{background:#fffdf9;border:1px solid rgba(23,59,50,.16);padding:clamp(28px,5vw,58px)}
+    .rsvp-panel h1,.guest-card h2{font-family:var(--serif);font-weight:400;color:var(--green-900)}
+    .rsvp-panel h1{font-size:clamp(52px,8vw,88px);margin:0 0 14px}
+    .rsvp-status{display:inline-block;margin-bottom:20px;padding:8px 12px;background:var(--green-900);color:var(--cream);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+    .rsvp-note{margin:20px 0;padding:14px 16px;background:#f4ecdf;border:1px solid rgba(23,59,50,.12)}
+    .rsvp-error{margin-top:14px;color:#7a2731;font-weight:700}
+    .rsvp-success{margin:24px 0;padding:22px;background:var(--green-900);color:var(--cream)}
+    .guest-card{margin:28px 0 0;padding:26px;border:1px solid rgba(23,59,50,.16);background:white}
+    .guest-card h2{margin:0 0 20px;font-size:34px}
+    .guest-extra[hidden]{display:none}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .field{margin:0 0 18px}.field label,.field legend{display:block;margin:0 0 7px;font-weight:700;font-size:13px;color:var(--green-900)}
+    .field fieldset{margin:0;padding:0;border:0}.field input,.field select,.field textarea{width:100%;padding:12px 13px;border:1px solid rgba(23,59,50,.25);background:#fff;color:#1b211e;font:inherit}.field textarea{min-height:92px;resize:vertical}
+    .checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 16px}.checks label{display:flex;align-items:center;gap:8px;margin:0;font-weight:400}.checks input{width:auto}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.secondary-button{padding:13px 18px;border:1px solid var(--green-900);background:transparent;color:var(--green-900);cursor:pointer}
+    .privacy-note{margin-top:30px;font-size:13px;color:#655f55}.other-stay[hidden]{display:none}
+    @media(max-width:650px){.field-grid,.checks{grid-template-columns:1fr}.rsvp-shell{margin-top:28px}.rsvp-panel{padding:24px}.guest-card{padding:20px}}
   </style>
 </head>
 <body class="subpage osa-body">
   <header class="site-header" id="top">
-    <a class="brand" href="index.html" aria-label="Einar och Lovisa, startsida"><span class="brand-mark">E <i>&</i> L</span><span class="brand-date">21 · 08 · 2027</span></a>
+    <a class="brand" href="index.html" aria-label="Einar och Lovisa, startsida"><span class="brand-mark">E <i>&amp;</i> L</span><span class="brand-date">21 · 08 · 2027</span></a>
     <nav class="main-nav" aria-label="Huvudmeny">
       <a class="nav-link" href="index.html">Hem</a>
       <a class="nav-link" href="om-oss.html">Om oss</a>
@@ -40,81 +48,166 @@
     </nav>
   </header>
 
-  <main class="osa-main">
-    <section class="osa-panel" aria-labelledby="osa-title">
-      <div class="monogram" aria-hidden="true">E&amp;L</div>
+  <main class="rsvp-shell">
+    <section class="rsvp-panel">
       <p class="eyebrow">21 augusti 2027</p>
-      <h1 id="osa-title">OSA</h1>
+      <h1>OSA</h1>
+      <span class="rsvp-status">Öppet</span>
+      <p class="lead">Skriv in koden som står på er inbjudan. Då visas alla personer som hör till just den inbjudan.</p>
 
-      <div class="prod-only">
-        <span class="osa-status">Öppnar efter årsskiftet</span>
-        <p class="lead">När OSA öppnar anger ni den personliga kod som står på inbjudan.</p>
-        <p>En kod hör till en inbjudan eller ett hushåll. När koden skrivs in visas alla namngivna personer som ingår i just den inbjudan. Varje person svarar sedan individuellt.</p>
-        <p><strong>OSA senast 31 mars 2027.</strong></p>
-        <form class="osa-form" aria-label="OSA är ännu inte öppet">
-          <div class="form-field"><label for="invite-code-closed">Personlig inbjudningskod</label><input id="invite-code-closed" type="text" placeholder="Exempel: K7M4XP" disabled></div>
-          <button class="form-button" type="button" disabled>Fortsätt</button>
-        </form>
-      </div>
+      <form id="lookup-form" class="osa-form">
+        <div class="form-field"><label for="invite-code">Personlig inbjudningskod</label><input id="invite-code" type="text" autocomplete="off" autocapitalize="characters" placeholder="Ange kod" required></div>
+        <button class="form-button" type="submit">Fortsätt</button>
+        <p class="rsvp-error" id="lookup-error" hidden></p>
+      </form>
 
-      <div class="demo-only">
-        <span class="osa-status">Test</span>
-        <div class="demo-note"><strong>Detta är bara ett test.</strong> Svaret sparas i webbläsaren och skickas inte till den riktiga gästlistan.</div>
-        <form class="osa-form" id="demo-login">
-          <div class="form-field"><label for="invite-code">Testkod</label><input id="invite-code" type="text" autocomplete="off" placeholder="Ange testkod"></div>
-          <button class="form-button" type="submit">Fortsätt</button>
-          <p class="demo-error" id="demo-error" hidden>Fel testkod.</p>
-        </form>
-
-        <form id="demo-rsvp" hidden>
-          <p class="invite-level" id="invite-level"></p>
-          <p class="lead" id="household-title"></p>
-          <section class="guest-card"><h2>Kontakt för inbjudan</h2><div class="demo-field"><label for="contact-email">Mejladress</label><input id="contact-email" type="email" placeholder="namn@exempel.se"></div></section>
+      <div id="rsvp-area" hidden>
+        <div class="rsvp-note" id="household-note"></div>
+        <form id="rsvp-form">
+          <section class="guest-card">
+            <h2>Kontakt</h2>
+            <div class="field"><label for="contact-email">Mejladress för inbjudan</label><input id="contact-email" type="email" placeholder="namn@exempel.se"></div>
+          </section>
           <div id="guest-cards"></div>
-          <div class="demo-actions"><button class="form-button" type="submit">Spara testsvar</button><button class="demo-secondary" id="clear-demo" type="button">Rensa</button></div>
+          <div class="actions"><button class="form-button" type="submit">Spara svar</button><button class="secondary-button" id="change-code" type="button">Byt kod</button></div>
+          <p class="rsvp-error" id="save-error" hidden></p>
         </form>
-        <div class="demo-summary" id="demo-summary" hidden></div>
+        <div class="rsvp-success" id="save-success" hidden></div>
       </div>
 
-      <p class="privacy-note"><strong>Om era uppgifter:</strong> Uppgifterna används endast för planering och genomförande av vårt bröllop. Relevant information kan vid behov delas med exempelvis kök och transportleverantörer.</p>
+      <p class="privacy-note"><strong>Om era uppgifter:</strong> Uppgifterna används för planering och genomförande av bröllopet. Relevant information kan vid behov delas med till exempel kök och transportleverantörer.</p>
     </section>
   </main>
 
   <script>
-  (()=>{
-    const params=new URLSearchParams(location.search);if(params.get('demo')!=='1')return;
-    document.body.classList.add('demo-mode');
-    const invitations={
-      LORDAG27:{label:'Lördag',guests:[{name:'Testgäst Ett',friday:false,sunday:false},{name:'Testgäst Två',friday:false,sunday:false}]},
-      FRELOR27:{label:'Fredag och lördag',guests:[{name:'Testgäst Ett',friday:true,sunday:false},{name:'Testgäst Två',friday:true,sunday:false}]},
-      HELG2027:{label:'Fredag, lördag och söndag',guests:[{name:'Testgäst Ett',friday:true,sunday:true},{name:'Testgäst Två',friday:true,sunday:true},{name:'Testgäst Tre',friday:true,sunday:true}]}
-    };
-    const allergies=['Gluten eller celiaki','Laktos','Mjölkprotein','Nötter','Jordnötter','Ägg','Fisk','Skaldjur'];
-    const login=document.getElementById('demo-login'),form=document.getElementById('demo-rsvp'),error=document.getElementById('demo-error'),cards=document.getElementById('guest-cards'),summary=document.getElementById('demo-summary');
-    const level=document.getElementById('invite-level'),householdTitle=document.getElementById('household-title');
-    let activeCode='',activeInvitation=null;
-    const esc=(v='')=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    const key=()=>`einar-lovisa-rsvp-demo-${activeCode}`;
-    function saved(){try{return JSON.parse(localStorage.getItem(key())||'null')}catch{return null}}
-    function card(g,i,s={}){
-      const checks=allergies.map((a,j)=>`<label><input type="checkbox" id="a${i}_${j}" ${s.allergies?.includes(a)?'checked':''}> ${a}</label>`).join('');
-      const opts=(list,val)=>list.map(x=>`<option value="${x}" ${val===x?'selected':''}>${x}</option>`).join('');
-      return `<section class="guest-card"><h2>${g.name}</h2>
-        <div class="demo-grid"><div class="demo-field"><label for="att${i}">Kommer du på bröllopet?</label><select id="att${i}" required><option value="">Välj</option>${opts(['Ja','Nej'],s.attending)}</select></div><div class="demo-field"><label for="food${i}">Kostpreferens</label><select id="food${i}"><option value="">Välj</option>${opts(['Äter allt','Vegetariskt','Veganskt','Pescetariskt','Annat'],s.food)}</select></div></div>
-        <div class="demo-field"><fieldset><legend>Allergier eller intoleranser</legend><div class="demo-checks">${checks}</div></fieldset></div>
-        <div class="demo-field"><label for="other${i}">Annat kring mat</label><input id="other${i}" value="${esc(s.other||'')}"></div>
-        <div class="demo-grid"><div class="demo-field"><label for="bus${i}">Buss från vigseln till Strömsfors?</label><select id="bus${i}"><option value="">Välj</option>${opts(['Ja','Nej'],s.bus)}</select></div><div class="demo-field"><label for="home${i}">Hur tänker du ta dig från festen?</label><select id="home${i}"><option value="">Välj</option>${opts(['Nattbuss','Egen bil','Skjuts','Taxi','Annat eller vet inte ännu'],s.home)}</select></div></div>
-        <div class="demo-grid"><div class="demo-field"><label for="stay${i}">Var planerar du att sova efter festen?</label><select id="stay${i}"><option value="">Välj</option>${opts(['Tranemo','Svenljunga','Göteborg','Nära Strömsfors','Annan ort','Vet inte ännu'],s.stay)}</select></div><div class="demo-field"><label for="stayother${i}">Annan ort</label><input id="stayother${i}" value="${esc(s.stayOther||'')}"></div></div>
-        ${g.friday?`<div class="demo-field"><label for="fri${i}">Deltar du på fredagen?</label><select id="fri${i}"><option value="">Välj</option>${opts(['Ja','Nej'],s.friday)}</select></div>`:''}
-        ${g.sunday?`<div class="demo-field"><label for="sun${i}">Deltar du på söndagen?</label><select id="sun${i}"><option value="">Välj</option>${opts(['Ja','Nej'],s.sunday)}</select></div>`:''}
-        <div class="demo-field"><label for="dance${i}">Hur ser det ut för dansgolvet?</label><select id="dance${i}"><option value="">Välj</option>${opts(['Jag är där','Efter några låtar','Ingen prognos ännu'],s.dance)}</select></div>
-        <div class="demo-field"><label for="notes${i}">Något annat vi bör känna till?</label><textarea id="notes${i}">${esc(s.notes||'')}</textarea></div></section>`;
+  (() => {
+    const API = String(window.WEDDING_API_URL || '').trim();
+    const lookupForm = document.getElementById('lookup-form');
+    const codeInput = document.getElementById('invite-code');
+    const lookupError = document.getElementById('lookup-error');
+    const rsvpArea = document.getElementById('rsvp-area');
+    const rsvpForm = document.getElementById('rsvp-form');
+    const cards = document.getElementById('guest-cards');
+    const householdNote = document.getElementById('household-note');
+    const contactEmail = document.getElementById('contact-email');
+    const saveError = document.getElementById('save-error');
+    const saveSuccess = document.getElementById('save-success');
+    const changeCode = document.getElementById('change-code');
+    const allergyChoices = ['Gluten eller celiaki','Laktos','Mjölkprotein','Nötter','Jordnötter','Ägg','Fisk','Skaldjur'];
+    let active = null;
+
+    const esc = (value = '') => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    const option = (value, selected) => `<option value="${esc(value)}" ${selected === value ? 'selected' : ''}>${esc(value)}</option>`;
+
+    function guestCard(guest, index) {
+      const p = guest.previous || {};
+      const previousStay = String(p.stay || '');
+      const otherStay = previousStay.startsWith('Annan ort:') ? previousStay.replace(/^Annan ort:\s*/, '') : '';
+      const selectedStay = otherStay ? 'Annan ort' : previousStay;
+      const checks = allergyChoices.map((name, i) => `<label><input type="checkbox" data-allergy="${i}" ${Array.isArray(p.allergies) && p.allergies.includes(name) ? 'checked' : ''}> ${esc(name)}</label>`).join('');
+
+      return `<section class="guest-card" data-index="${index}" data-id="${esc(guest.guestId)}">
+        <h2>${esc([guest.firstName, guest.lastName].filter(Boolean).join(' '))}</h2>
+        <div class="field"><label>Kommer du på bröllopet?</label><select data-field="attending" required><option value="">Välj</option>${option('Ja', p.attending)}${option('Nej', p.attending)}</select></div>
+        <div class="guest-extra">
+          <div class="field-grid">
+            <div class="field"><label>Kostpreferens</label><select data-field="food"><option value="">Välj</option>${['Äter allt','Vegetariskt','Veganskt','Pescetariskt','Annat'].map(v => option(v,p.food)).join('')}</select></div>
+            <div class="field"><label>Buss från vigseln till Strömsfors?</label><select data-field="bus"><option value="">Välj</option>${option('Ja',p.bus)}${option('Nej',p.bus)}</select></div>
+          </div>
+          <div class="field"><fieldset><legend>Allergier eller intoleranser</legend><div class="checks">${checks}</div></fieldset></div>
+          <div class="field"><label>Annan allergi eller intolerans</label><input data-field="otherAllergy" value="${esc(p.otherAllergy || '')}" placeholder="Lämna tomt om inget annat finns"></div>
+          <div class="field-grid">
+            <div class="field"><label>Hur tänker du ta dig från festen?</label><select data-field="home"><option value="">Välj</option>${['Nattbuss','Egen bil','Skjuts','Taxi','Annat eller vet inte ännu'].map(v => option(v,p.home)).join('')}</select></div>
+            <div class="field"><label>Var planerar du att bo eller sova?</label><select data-field="stay"><option value="">Välj</option>${['Nära Strömsfors','Tranemo','Svenljunga','Göteborg','Annan ort','Vet inte ännu'].map(v => option(v,selectedStay)).join('')}</select></div>
+          </div>
+          <div class="field other-stay" ${selectedStay === 'Annan ort' ? '' : 'hidden'}><label>Annan ort</label><input data-field="otherStay" value="${esc(otherStay)}" placeholder="Skriv ort"></div>
+          ${guest.friday ? `<div class="field"><label>Deltar du på fredagen?</label><select data-field="friday"><option value="">Välj</option>${['Ja','Nej','Vet inte ännu'].map(v => option(v,p.friday)).join('')}</select></div>` : ''}
+          ${guest.sunday ? `<div class="field"><label>Deltar du på söndagen?</label><select data-field="sunday"><option value="">Välj</option>${['Ja','Nej','Vet inte ännu'].map(v => option(v,p.sunday)).join('')}</select></div>` : ''}
+          <div class="field"><label>Låtönskemål, om du har något</label><input data-field="song" value="${esc(p.song || '')}" placeholder="Artist och låt"></div>
+          <div class="field"><label>Vem tror du gråter först?</label><select data-field="funAnswer"><option value="">Välj om du vill</option>${['Einar','Lovisa','Båda samtidigt','Någon i toastteamet','Vet inte'].map(v => option(v,p.funAnswer)).join('')}</select></div>
+          <div class="field"><label>Något annat vi bör känna till?</label><textarea data-field="notes">${esc(p.notes || '')}</textarea></div>
+        </div>
+      </section>`;
     }
-    function show(){const s=saved(),guests=activeInvitation.guests;level.textContent=`Testinbjudan: ${activeInvitation.label}`;householdTitle.textContent=`Inbjudan gäller ${guests.map(g=>g.name).join(', ')}`;cards.innerHTML=guests.map((g,i)=>card(g,i,s?.guests?.[i]||{})).join('');document.getElementById('contact-email').value=s?.email||'';login.hidden=true;form.hidden=false;if(s)showSummary(s)}
-    function showSummary(s){summary.hidden=false;summary.innerHTML=`<h2>Testsvar sparat</h2><p>${esc(activeInvitation.label)}</p><p>Kontakt: ${esc(s.email||'Ej angiven')}</p><ul>${s.guests.map((g,i)=>`<li><strong>${activeInvitation.guests[i].name}</strong>: ${esc(g.attending||'Ej valt')}, ${esc(g.food||'kost ej vald')}, ${esc(g.bus||'buss ej vald')}, ${esc(g.home||'hemresa ej vald')}</li>`).join('')}</ul>`}
-    login.addEventListener('submit',e=>{e.preventDefault();const code=document.getElementById('invite-code').value.trim().toUpperCase();if(!invitations[code]){error.hidden=false;return}error.hidden=true;activeCode=code;activeInvitation=invitations[code];show()});
-    form.addEventListener('submit',e=>{e.preventDefault();const guests=activeInvitation.guests;const data={email:document.getElementById('contact-email').value.trim(),guests:guests.map((g,i)=>({attending:document.getElementById(`att${i}`).value,food:document.getElementById(`food${i}`).value,allergies:allergies.filter((a,j)=>document.getElementById(`a${i}_${j}`).checked),other:document.getElementById(`other${i}`).value.trim(),bus:document.getElementById(`bus${i}`).value,home:document.getElementById(`home${i}`).value,stay:document.getElementById(`stay${i}`).value,stayOther:document.getElementById(`stayother${i}`).value.trim(),friday:g.friday?document.getElementById(`fri${i}`).value:'',sunday:g.sunday?document.getElementById(`sun${i}`).value:'',dance:document.getElementById(`dance${i}`).value,notes:document.getElementById(`notes${i}`).value.trim()}))};localStorage.setItem(key(),JSON.stringify(data));showSummary(data);summary.scrollIntoView({behavior:'smooth',block:'center'})});
-    document.getElementById('clear-demo').addEventListener('click',()=>{if(activeCode)localStorage.removeItem(key());summary.hidden=true;if(activeInvitation)show()});
+
+    function updateVisibility(card) {
+      const attending = card.querySelector('[data-field="attending"]');
+      card.querySelector('.guest-extra').hidden = attending.value === 'Nej';
+    }
+
+    function render(data) {
+      active = data;
+      householdNote.innerHTML = `<strong>${esc(data.invitation.householdName || 'Er inbjudan')}</strong><br>${data.guests.length} ${data.guests.length === 1 ? 'person' : 'personer'} finns på koden.`;
+      contactEmail.value = data.invitation.email || '';
+      cards.innerHTML = data.guests.map(guestCard).join('');
+      cards.querySelectorAll('.guest-card').forEach(card => {
+        updateVisibility(card);
+        card.querySelector('[data-field="attending"]').addEventListener('change', () => updateVisibility(card));
+        const stay = card.querySelector('[data-field="stay"]');
+        const other = card.querySelector('.other-stay');
+        if (stay && other) stay.addEventListener('change', () => { other.hidden = stay.value !== 'Annan ort'; });
+      });
+      lookupForm.hidden = true;
+      rsvpArea.hidden = false;
+      saveSuccess.hidden = true;
+      window.scrollTo({top:rsvpArea.offsetTop - 100,behavior:'smooth'});
+    }
+
+    async function lookup(code) {
+      if (!API) throw new Error('OSA är förberedd men den tekniska kopplingen är ännu inte aktiverad.');
+      const response = await fetch(`${API}?action=lookup&code=${encodeURIComponent(code)}`, {redirect:'follow'});
+      const data = await response.json();
+      if (!data.ok) throw new Error(data.error || 'Koden kunde inte hittas.');
+      return data;
+    }
+
+    lookupForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      lookupError.hidden = true;
+      try {
+        const data = await lookup(codeInput.value.trim().toUpperCase());
+        render(data);
+      } catch (err) {
+        lookupError.textContent = err.message || 'Något gick fel.';
+        lookupError.hidden = false;
+      }
+    });
+
+    rsvpForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      saveError.hidden = true;
+      saveSuccess.hidden = true;
+      if (!active || !API) return;
+
+      try {
+        const guests = [...cards.querySelectorAll('.guest-card')].map((card, index) => {
+          const guest = active.guests[index];
+          const field = name => card.querySelector(`[data-field="${name}"]`)?.value || '';
+          const allergies = [...card.querySelectorAll('[data-allergy]')].filter(box => box.checked).map(box => allergyChoices[Number(box.dataset.allergy)]);
+          let stay = field('stay');
+          if (stay === 'Annan ort') stay = `Annan ort: ${field('otherStay')}`.trim();
+          return {guestId:guest.guestId,attending:field('attending'),food:field('food'),allergies,otherAllergy:field('otherAllergy'),bus:field('bus'),home:field('home'),stay,friday:field('friday'),sunday:field('sunday'),song:field('song'),funAnswer:field('funAnswer'),notes:field('notes')};
+        });
+
+        const response = await fetch(API, {method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'saveRsvp',code:active.invitation.code,email:contactEmail.value.trim(),guests})});
+        const data = await response.json();
+        if (!data.ok) throw new Error(data.error || 'Svaret kunde inte sparas.');
+        saveSuccess.innerHTML = '<strong>Tack, svaret är sparat.</strong><br>Ni kan använda samma kod igen om något behöver ändras senare.';
+        saveSuccess.hidden = false;
+        saveSuccess.scrollIntoView({behavior:'smooth',block:'center'});
+      } catch (err) {
+        saveError.textContent = err.message || 'Något gick fel när svaret skulle sparas.';
+        saveError.hidden = false;
+      }
+    });
+
+    changeCode.addEventListener('click', () => {
+      active = null;
+      rsvpArea.hidden = true;
+      lookupForm.hidden = false;
+      codeInput.value = '';
+      codeInput.focus();
+    });
   })();
   </script>
 </body>
