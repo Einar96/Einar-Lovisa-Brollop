@@ -25,8 +25,8 @@
 .location-art {
   min-height: 520px;
   background:
-    linear-gradient(rgba(15,45,39,.06), rgba(15,45,39,.18)),
-    url('assets/stromsfors-bruk.jpg') center center / cover no-repeat !important;
+    linear-gradient(rgba(15,45,39,.04), rgba(15,45,39,.12)),
+    url('assets/stromsfors-bruk-front.jpg') center center / cover no-repeat !important;
 }
 .location-art .arch,
 .location-art .location-monogram,
@@ -64,6 +64,22 @@
 .home-venue-copy p:not(.eyebrow) {
   margin: 0 auto 28px;
   font-size: clamp(18px, 2vw, 24px);
+}
+
+.countdown.countdown-days-only {
+  width: min(420px, 100%);
+  grid-template-columns: 1fr;
+  padding: 27px 22px 29px;
+}
+.countdown.countdown-days-only div {
+  border-right: 0;
+}
+.countdown.countdown-days-only strong {
+  font-size: clamp(38px, 5vw, 54px);
+}
+.countdown.countdown-days-only span {
+  margin-top: 9px;
+  font-size: 10px;
 }
 
 .person-photo {
