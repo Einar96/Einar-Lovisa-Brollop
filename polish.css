@@ -137,6 +137,18 @@
   text-align: center;
 }
 
+.rsvp-error {
+  margin-top: 14px;
+  color: #7a2731;
+  font-weight: 700;
+}
+.rsvp-success {
+  margin-top: 20px;
+  padding: 18px 20px;
+  background: var(--green-900);
+  color: var(--cream);
+}
+
 .church-placeholder {
   width: min(var(--max), 100%);
   min-height: 420px;
