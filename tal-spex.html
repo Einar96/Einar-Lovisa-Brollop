@@ -57,7 +57,7 @@
         <div class="form-group"><label for="toast-notes">Övrig information till toastteamet</label><textarea id="toast-notes"></textarea></div>
         <button class="form-button" type="submit">Skicka till toastteamet</button>
         <p id="toast-error" class="rsvp-error" hidden></p>
-        <div id="toast-success" class="rsvp-success" hidden><strong>Tack.</strong> Anmälan är skickad till toastteamet.</div>
+        <div id="toast-success" class="rsvp-success" hidden></div>
       </form>
     </section>
   </main>
@@ -103,6 +103,7 @@
         const data = await response.json();
         if (!data.ok) throw new Error(data.error || 'Anmälan kunde inte sparas.');
         form.reset();
+        success.innerHTML = data.mailSent ? '<strong>Tack.</strong> Anmälan är sparad och toastteamet har fått den.' : '<strong>Tack.</strong> Anmälan är sparad. Mejlaviseringen till toastteamet aktiveras när alla kontaktuppgifter är klara.';
         success.hidden = false;
         success.scrollIntoView({behavior:'smooth',block:'center'});
       } catch (err) {
