@@ -1,13 +1,18 @@
 /*
   Backend för OSA samt tal och spex.
 
-  Koden ska köras som en Google Apps Script Web App.
-  Lägg följande värden i Script Properties, aldrig i GitHub:
+  Rekommenderad setup:
+  1. Öppna det privata Google Sheetet för bröllopet.
+  2. Välj Tillägg > Apps Script så att skriptet blir bundet till kalkylarket.
+  3. Klistra in denna kod och publicera som Web App.
 
-  WEDDING_SPREADSHEET_ID = ID för det privata Google Sheetet
-  TOAST_EMAILS = toastteamets mejladresser separerade med kommatecken
+  Lägg toastteamets mejladresser i Script Property:
+  TOAST_EMAILS = adresser separerade med kommatecken
 
-  Web app:
+  Om skriptet i stället körs fristående kan Script Property
+  WEDDING_SPREADSHEET_ID användas för att peka ut rätt kalkylark.
+
+  Web App:
   Execute as: Me
   Who has access: Anyone
 */
@@ -22,11 +27,7 @@ const SHEET_NAMES = {
 function doGet(e) {
   try {
     const action = String((e && e.parameter && e.parameter.action) || 'status');
-
-    if (action === 'lookup') {
-      return jsonResponse_(lookupInvitation_(e.parameter.code));
-    }
-
+    if (action === 'lookup') return jsonResponse_(lookupInvitation_(e.parameter.code));
     return jsonResponse_({ ok: true, status: 'ready' });
   } catch (err) {
     return jsonResponse_({ ok: false, error: err.message || String(err) });
@@ -37,15 +38,8 @@ function doPost(e) {
   try {
     const payload = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     const action = String(payload.action || '');
-
-    if (action === 'saveRsvp') {
-      return jsonResponse_(saveRsvp_(payload));
-    }
-
-    if (action === 'saveToast') {
-      return jsonResponse_(saveToast_(payload));
-    }
-
+    if (action === 'saveRsvp') return jsonResponse_(saveRsvp_(payload));
+    if (action === 'saveToast') return jsonResponse_(saveToast_(payload));
     return jsonResponse_({ ok: false, error: 'Okänd åtgärd.' });
   } catch (err) {
     return jsonResponse_({ ok: false, error: err.message || String(err) });
@@ -57,10 +51,7 @@ function lookupInvitation_(rawCode) {
   const ss = getSpreadsheet_();
   const invitations = sheetObjects_(ss.getSheetByName(SHEET_NAMES.invitations));
   const invitation = invitations.find(row => normalizeCode_(row['Kod']) === code);
-
-  if (!invitation) {
-    return { ok: false, error: 'Koden kunde inte hittas.' };
-  }
+  if (!invitation) return { ok: false, error: 'Koden kunde inte hittas.' };
 
   const allGuests = sheetObjects_(ss.getSheetByName(SHEET_NAMES.guests));
   const guests = allGuests
@@ -74,9 +65,7 @@ function lookupInvitation_(rawCode) {
       sunday: bool_(row['Söndag'])
     }));
 
-  if (!guests.length) {
-    return { ok: false, error: 'Inbjudan saknar registrerade gäster.' };
-  }
+  if (!guests.length) return { ok: false, error: 'Inbjudan saknar registrerade gäster.' };
 
   const rsvpRows = sheetObjects_(ss.getSheetByName(SHEET_NAMES.rsvp));
   const previousByGuest = {};
@@ -135,8 +124,7 @@ function saveRsvp_(payload) {
     const invitationRowIndex = invitationValues.findIndex((row, i) => i > 0 && normalizeCode_(row[codeCol]) === code);
     if (invitationRowIndex < 1) throw new Error('Koden kunde inte hittas.');
 
-    const allowedGuests = sheetObjects_(guestSheet)
-      .filter(row => normalizeCode_(row['Kod']) === code && bool_(row['Lördag']));
+    const allowedGuests = sheetObjects_(guestSheet).filter(row => normalizeCode_(row['Kod']) === code && bool_(row['Lördag']));
     const allowedById = {};
     allowedGuests.forEach(row => { allowedById[String(row['Gäst-ID'])] = row; });
 
@@ -193,11 +181,8 @@ function saveRsvp_(payload) {
       ];
 
       const targetRow = existingRowById[String(answer.guestId)];
-      if (targetRow) {
-        rsvpSheet.getRange(targetRow, 1, 1, row.length).setValues([row]);
-      } else {
-        rsvpSheet.appendRow(row);
-      }
+      if (targetRow) rsvpSheet.getRange(targetRow, 1, 1, row.length).setValues([row]);
+      else rsvpSheet.appendRow(row);
     });
 
     const spreadsheetRow = invitationRowIndex + 1;
@@ -290,8 +275,10 @@ function saveToast_(payload) {
 
 function getSpreadsheet_() {
   const id = PropertiesService.getScriptProperties().getProperty('WEDDING_SPREADSHEET_ID');
-  if (!id) throw new Error('WEDDING_SPREADSHEET_ID saknas i Script Properties.');
-  return SpreadsheetApp.openById(id);
+  if (id) return SpreadsheetApp.openById(id);
+  const active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active) return active;
+  throw new Error('Skriptet är inte bundet till något kalkylark och WEDDING_SPREADSHEET_ID saknas.');
 }
 
 function sheetObjects_(sheet) {
@@ -350,7 +337,5 @@ function bool_(value) {
 }
 
 function jsonResponse_(payload) {
-  return ContentService
-    .createTextOutput(JSON.stringify(payload))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON);
 }
