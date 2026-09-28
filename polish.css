@@ -26,7 +26,7 @@
   min-height: 520px;
   background:
     linear-gradient(rgba(15,45,39,.04), rgba(15,45,39,.12)),
-    url('assets/stromsfors-bruk-front.jpg') center center / cover no-repeat !important;
+    url('assets/stromsfors-bruk-front-hq.jpg') center center / cover no-repeat !important;
 }
 .location-art .arch,
 .location-art .location-monogram,
@@ -40,7 +40,7 @@
   display: grid;
   place-items: center;
   padding: 64px 24px;
-  background: url('assets/stromsfors-bruk.jpg') center center / cover no-repeat;
+  background: url('assets/stromsfors-bruk-hq.jpg') center center / cover no-repeat;
   color: var(--cream);
   overflow: hidden;
 }
