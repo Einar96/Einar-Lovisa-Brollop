@@ -1,0 +1,42 @@
+name: Import Strömsfors HQ images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-stromsfors-hq.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download full-quality images
+        env:
+          FRONT_URL: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-80e4-8210-bbc4-8e9e766ebde5/raw?se=2026-09-28T13%3A52%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=bcb328dc-eace-5df5-956c-a1dbf9880bfd&skoid=b971d227-1348-4524-8797-edb0fdf15147&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-28T06%3A13%3A32Z&ske=2026-09-29T06%3A13%3A32Z&sks=b&skv=2026-02-06&sig=WPiUnsgIwdlo%2ByUjtFQGYwicfAVKdAkKbQKKkHwCp7s%3D'
+          SIDE_URL: 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-9b20-81f4-abd7-1bc3f1689c68/raw?se=2026-09-28T13%3A52%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=07311232-1fc7-5784-b336-d1d72ccfdf39&skoid=b971d227-1348-4524-8797-edb0fdf15147&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-28T03%3A46%3A40Z&ske=2026-09-29T03%3A46%3A40Z&sks=b&skv=2026-02-06&sig=/IgjRE9h4VQqVcGJ0HIe8FRCZH4rosgr%2BGpvOrnUflM%3D'
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 "$FRONT_URL" -o assets/stromsfors-bruk-front-hq.jpg
+          curl -L --fail --retry 3 "$SIDE_URL" -o assets/stromsfors-bruk-hq.jpg
+          test "$(stat -c%s assets/stromsfors-bruk-front-hq.jpg)" -gt 500000
+          test "$(stat -c%s assets/stromsfors-bruk-hq.jpg)" -gt 500000
+
+      - name: Point site to HQ images and remove temporary workflow
+        run: |
+          set -euo pipefail
+          sed -i "s#assets/stromsfors-bruk-front.jpg#assets/stromsfors-bruk-front-hq.jpg#g" polish.css
+          sed -i "s#assets/stromsfors-bruk.jpg#assets/stromsfors-bruk-hq.jpg#g" polish.css
+          git rm .github/workflows/import-stromsfors-hq.yml
+          git config user.name "Einar96"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/stromsfors-bruk-front-hq.jpg assets/stromsfors-bruk-hq.jpg polish.css
+          git commit -m "Use full-quality Strömsfors photos"
+          git push origin main
